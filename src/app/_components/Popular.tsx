@@ -1,11 +1,9 @@
-import { MovieType } from "../util";
-import { token } from "../util";
+import { MovieType, token } from "../util";
 import Image from "next/image";
 
-export default async function TopRated() {
-  // const getMovie = async () => {
+export default async function Popular() {
   const response = await fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -17,7 +15,7 @@ export default async function TopRated() {
 
   return (
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
-      <h1 className="pb-5 text-3xl">Top rated</h1>
+      <h1 className="pb-5 text-3xl">Popular</h1>
       <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (

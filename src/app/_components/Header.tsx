@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="w-[1280px] h-[36px] flex sticky top-0 bg-black justify-between m-auto pr-16 pl-16 cursor-pointer m-5 mt-5">
+    <div className="w-[1280px] h-[36px] flex sticky top-0 bg-black justify-between m-auto cursor-pointer mt-5 rounded-sm">
       <img src="./Logo.svg" alt="" />
       <button className="w-[97px] h-[36px]">Genre</button>
       <input

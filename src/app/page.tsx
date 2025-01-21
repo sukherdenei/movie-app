@@ -1,66 +1,39 @@
-"use client";
-import { useEffect, useState } from "react";
-import Header from "./components/Header";
-import Cover from "./components/Cover";
+import Header from "./_components/Header";
+import TopRated from "./_components/TopRated";
+import { MovieType } from "./util";
+import { token } from "./util";
+import Cover from "./_components/Cover";
 
-type MovieType = {
-  adult: boolean;
-  backdrop_path: string;
-  original_title: string;
-  genre_ids: Array<number>;
-  id: number;
-  original_language: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
-
-export default function Home() {
-  const [movies, setMovies] = useState<MovieType[] | undefined>();
+export default async function Home() {
   // fetch movie info setMovie //
-  const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMmZiMWY2ZTA2ZWI2YzE3MGJjZWI0ODUzMzY1MWJjZiIsIm5iZiI6MTczNzM0MjU0NS42MjQsInN1YiI6IjY3OGRiZTUxZDhhNWIwZDAwYzQzNGNmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dmDhnJpGWqwqyuPSu6Vaqv1Chq-b3BmRKojdw8AMHM4";
+  // const token =
+  //   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMmZiMWY2ZTA2ZWI2YzE3MGJjZWI0ODUzMzY1MWJjZiIsIm5iZiI6MTczNzM0MjU0NS42MjQsInN1YiI6IjY3OGRiZTUxZDhhNWIwZDAwYzQzNGNmYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dmDhnJpGWqwqyuPSu6Vaqv1Chq-b3BmRKojdw8AMHM4";
 
-  const getMovie = async () => {
-    const response = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    if (data?.results) {
-      setMovies(data.results);
+  const response = await fetch(
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
     }
-  };
+  );
 
-  useEffect(() => {
-    getMovie();
-
-    console.log("getting movie");
-  }, []);
-
-  console.log({ movies });
+  const data = await response.json();
+  // console.log({ data });
 
   return (
-    <div className="w-[1440px] m-auto">
+    <div className=" m-auto flex flex-col gap-10">
       <Header />
-      <div className="CARDS flex gap-10 w-[1277] h-[910px] justify-center flex-wrap ">
-        {movies?.slice(0, 10).map((movie, index) => {
+
+      <Cover data={data} />
+      <div className="CARDS flex gap-10 max-w-[1480px] h-[910px] justify-center flex-wrap mx-[auto] ">
+        {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
             <div key={index}>
-              {/* Movie name : {movie?.original_title} */}
               <div className="">
                 <img
-                  className="w-[230px] h-[439px] cursor-pointer"
+                  className="w-[230px] h-[439px] cursor-pointer rounded-lg"
                   src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
                   alt=""
                 />
@@ -74,7 +47,7 @@ export default function Home() {
           );
         })}
       </div>
-      <Cover />
+      <TopRated />
     </div>
   );
 }

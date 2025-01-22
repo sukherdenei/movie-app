@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MovieType, token } from "../util";
+import { MovieType, token } from "../Util";
 
 export default async function Cover() {
   const response = await fetch(

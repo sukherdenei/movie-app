@@ -1,4 +1,4 @@
-import { MovieType, token } from "../util";
+import { MovieType, token } from "../Util";
 import Image from "next/image";
 
 export default async function Popular() {
@@ -27,6 +27,11 @@ export default async function Popular() {
                 className="w-[230px] h-[439px] cursor-pointer rounded-lg"
                 src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
               />
+              <div className="svg-vote flex gap-2">
+                <img src="./Star.svg" alt="" />
+                <p>{movie?.vote_average}/10</p>
+              </div>
+              <h1>{movie?.original_title}</h1>
             </div>
           );
         })}

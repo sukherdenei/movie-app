@@ -1,4 +1,4 @@
-import { MovieType, token } from "../util";
+import { MovieType, token } from "../Util";
 import Image from "next/image";
 
 export default async function Cards() {
@@ -20,7 +20,7 @@ export default async function Cards() {
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
             <div key={index}>
-              <div>
+              <div className="w-[230px] h-[510px]">
                 <Image
                   alt=""
                   width={1000}
@@ -28,7 +28,7 @@ export default async function Cards() {
                   className="w-[230px] h-[439px] cursor-pointer rounded-lg"
                   src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
                 />
-                <div className="svg&vote flex gap-2 ">
+                <div className="svg&vote flex gap-2">
                   <img src="./Star.svg" alt="" />
                   <p>{movie?.vote_average}/10</p>
                 </div>

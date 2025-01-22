@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className="w-[1280px] h-[36px] items-center flex    sticky top-0 bg-black justify-between m-auto cursor-pointer mt-5 rounded-sm">
       <img src="./Logo.svg" alt="" />
-      <button className="w-[97px] h-[36px]">Genre</button>
+      <Button className="w-[97px] h-[36px]">Genre</Button>
       <input
         type="text"
         placeholder="Search"

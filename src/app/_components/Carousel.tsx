@@ -23,12 +23,24 @@ export default async function Carousels() {
     }
   );
   const data = await response.json();
+
   return (
     <Carousel className="w-[100%] relative">
       <CarouselContent className="h-[600px] items-center">
-        {data.results.slice(0, 20).map((movie: MovieType, index: number) => (
+        <div>
+          <div className="absolute left-[150px] bottom-100 flex flex-col">
+            <p>Now PLaying</p>
+            <h2 className="text-3xl">Wicked</h2>
+            {/* <div className="w-[200px] h-[200px] bg-blue-500">
+              {data.results.map((info: MovieType) => {
+                return <p>{info.original_title}</p>;
+              })}
+            </div> */}
+          </div>
+        </div>
+        {data.results.slice(0, 20).map((cover: MovieType, index: number) => (
           <CarouselItem key={index}>
-            <div className="">
+            <div>
               <Card>
                 <CardContent className="flex items-center justify-center">
                   <Image
@@ -38,14 +50,9 @@ export default async function Carousels() {
                     className="w-[100vw] h-[600px]"
                     src={
                       "https://image.tmdb.org/t/p/original/" +
-                      movie?.backdrop_path
+                      cover.backdrop_path
                     }
                   />
-                  {/* <div className="absolute left-[150px] bottom-100 flex flex-col">
-                    <p>Now PLaying</p>
-                    <h1>Wicked</h1>
-                    <div className="w-[200px] "> {movie?.original_title}</div>
-                  </div> */}
                 </CardContent>
               </Card>
             </div>

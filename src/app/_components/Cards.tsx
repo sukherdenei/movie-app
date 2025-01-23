@@ -18,7 +18,11 @@ export default async function Cards() {
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center ">
       <div className="flex justify-between">
         <h1 className="pb-5 text-3xl">Upcoming</h1>
-        <Link href="/upcoming" target="_blank">
+        <Link
+          className=""
+          href="https://pinecone-academy-movie-app.vercel.app/category/upcoming"
+          target="_blank"
+        >
           See more
         </Link>
       </div>

@@ -15,7 +15,7 @@ export default async function Cover() {
   const data = await response.json();
 
   return (
-    <div className="flex overflow-scroll ">
+    <div className="flex overflow-scroll">
       {data.results.slice(0, 3).map((movie: MovieType, index: number) => {
         return (
           <div key={index}>
@@ -24,7 +24,7 @@ export default async function Cover() {
               width={1000}
               height={1000}
               className="min-w-[1440px] h-[600px]"
-              src={"https://image.tmdb.org/t/p/w500/" + movie?.backdrop_path}
+              src={"https://image.tmdb.org/t/p/original" + movie?.backdrop_path}
             />
           </div>
         );

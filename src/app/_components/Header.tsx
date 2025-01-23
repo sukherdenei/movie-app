@@ -1,15 +1,17 @@
 import { ModeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import { PopoverDemo } from "./Popever-genre";
 
 const Header = () => {
   return (
     <div className="w-[1280px] h-[36px] items-center flex    sticky top-0 bg-black justify-between m-auto cursor-pointer mt-5 rounded-sm">
       <img src="./Logo.svg" alt="" />
-      <Button className="w-[97px] h-[36px]">Genre</Button>
+      {/* <Button className="w-[97px] h-[36px]">Genre</Button> */}
+      <PopoverDemo />
       <input
         type="text"
         placeholder="Search"
-        className="outline-white border-2 w-[379px] h-[36px]"
+        className="outline-none border-2 w-[379px] h-[36px] rounded-sm border-zinc-600"
       />
       <ModeToggle />
       {/* <Button

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MovieType, token } from "../Util";
 import Image from "next/image";
 
@@ -15,7 +16,13 @@ export default async function Cards() {
   const data = await response.json();
   return (
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center ">
-      <h1 className="pb-5 text-3xl">Upcoming</h1>
+      <div className="flex justify-between">
+        <h1 className="pb-5 text-3xl">Upcoming</h1>
+        <Link href="/upcoming" target="_blank">
+          See more
+        </Link>
+      </div>
+
       <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
@@ -26,7 +33,9 @@ export default async function Cards() {
                   width={1000}
                   height={1000}
                   className="w-[230px] h-[439px] cursor-pointer rounded-lg"
-                  src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
+                  src={
+                    "https://image.tmdb.org/t/p/original/" + movie?.poster_path
+                  }
                 />
                 <div className="svg&vote flex gap-2">
                   <img src="./Star.svg" alt="" />

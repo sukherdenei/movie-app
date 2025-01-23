@@ -11,9 +11,8 @@ import {
 } from "@/components/ui/carousel";
 
 import { MovieType, token } from "../Util";
-import { CardContent } from "@/components/ui/card";
 
-export default async function Carousel() {
+export default async function Carousels() {
   const response = await fetch(
     "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
     {
@@ -25,31 +24,36 @@ export default async function Carousel() {
   );
   const data = await response.json();
   return (
-    <Carousel className="w-full max-w-xs">
-      <CarouselContent>
-        {data.results.slice(0, 3).map((movie: MovieType, index: number) => (
+    <Carousel className="w-[100%] relative">
+      <CarouselContent className="h-[600px] items-center">
+        {data.results.slice(0, 20).map((movie: MovieType, index: number) => (
           <CarouselItem key={index}>
-            <div className="p-1">
+            <div className="">
               <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
+                <CardContent className="flex items-center justify-center">
                   <Image
                     alt=""
                     width={1000}
                     height={1000}
-                    className="min-w-[1440px] h-[600px]"
+                    className="w-[100vw] h-[600px]"
                     src={
-                      "https://image.tmdb.org/t/p/w500/" + movie?.backdrop_path
+                      "https://image.tmdb.org/t/p/original/" +
+                      movie?.backdrop_path
                     }
                   />
-                  <span className="text-4xl font-semibold">{index + 1}</span>
+                  {/* <div className="absolute left-[150px] bottom-100 flex flex-col">
+                    <p>Now PLaying</p>
+                    <h1>Wicked</h1>
+                    <div className="w-[200px] "> {movie?.original_title}</div>
+                  </div> */}
                 </CardContent>
               </Card>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="absolute left-[40px]" />
+      <CarouselNext className="absolute right-[40px]" />
     </Carousel>
   );
 }

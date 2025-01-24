@@ -30,7 +30,7 @@ export default async function Cards() {
       <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
-            <div key={index}>
+            <Link href={`/cardinfo/${movie.id}`} key={index}>
               <div className="w-[230px] h-[510px]">
                 <Image
                   alt=""
@@ -47,7 +47,7 @@ export default async function Cards() {
                 </div>
                 <h1>{movie?.original_title}</h1>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

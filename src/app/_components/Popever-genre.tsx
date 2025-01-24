@@ -20,7 +20,7 @@ export async function PopoverDemo() {
     }
   );
   const data = await response.json();
-  console.log(data.genres[6].name);
+  //   console.log(data.genres[6].name);
   return (
     <Popover>
       <PopoverTrigger asChild>

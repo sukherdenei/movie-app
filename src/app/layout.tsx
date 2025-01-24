@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ReactNode } from "react";
+import Header from "./_components/Header";
 type RootLayoutProps = {
   children: ReactNode;
 };
@@ -37,6 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* <Header /> */}
           {children}
         </ThemeProvider>
       </body>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Header from "../../_components/Header";
 import { genreType, MovieType, token } from "../../Util";
+import Link from "next/link";
 
 export default async function CardInfo({
   params: { productId },
@@ -17,18 +18,45 @@ export default async function CardInfo({
     }
   );
   const data = await response.json();
-  console.log(data);
+
+  const actors = await fetch(
+    `https://api.themoviedb.org/3/movie/${productId}/credits?language=en-US`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const actorsData = await actors.json();
+
+  const moreLikeThis = await fetch(
+    `https://api.themoviedb.org/3/movie/${productId}/similar?language=en-US&page=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }
+  );
+  const moreLikeData = await moreLikeThis.json();
+
   return (
-    <div className="w-[1280px] p-5">
+    <div className="w-[1280px] p-5 m-auto ">
       <Header />
-      <p>{data.original_title}</p>
-      <p>{data.release_date}</p>
-      <div className="right flex float-end gap-2">
-        <img src="/Star.svg" alt="" className="w-[30px] h-[50px]" />
+      <div className="flex justify-between mt-10">
         <div>
+          <p>{data.original_title}</p>
+          <p>{data.release_date}</p>
+        </div>
+
+        <div className="header-right">
           <h2>Rating</h2>
-          <p>{data.vote_average}/10</p>
-          <p>{data.vote_count}</p>
+          <div className="flex  justify-center items-center gap-2">
+            <img src="/Star.svg" alt="" className="w-[30px] h-[50px]" />
+            <p>{data.vote_average}/10</p>
+            <p>{data.vote_count}</p>
+          </div>
         </div>
       </div>
 
@@ -39,13 +67,64 @@ export default async function CardInfo({
         className="w-[280px] h-[428px] cursor-pointer rounded-lg"
         src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
       />
+
       <div className="flex gap-9">
         {data.genres.map((genre: genreType, index: number) => {
-          return <button key={index}>{genre.name}</button>;
+          return (
+            <button className="" key={index}>
+              {genre.name}
+            </button>
+          );
         })}
       </div>
       <p className="w-[1080px] h-[90px]">{data.overview}</p>
       <h2>{data.directer}</h2>
+      <div>
+        <p className="gap-5 flex">
+          {actorsData.crew[0].job} {actorsData.crew[0].name}
+        </p>
+        <p>{actorsData.crew[1].department}</p>
+        <div className="stars flex">
+          {actorsData.cast.slice(0, 5).map((star: genreType, index: number) => {
+            return <p key={index}>{star.name}</p>;
+          })}
+        </div>
+      </div>
+
+      <div className="MORE-LIKE-THIS SEE MORE flex justify-between">
+        <h1>More like this</h1>
+        <Link
+          href="https://pinecone-academy-movie-app.vercel.app/category/1184918/similar"
+          target="_blank"
+        >
+          See more
+        </Link>
+      </div>
+
+      <div className="moreLikeThisDiv flex gap-5 mt-5 justify-between">
+        {moreLikeData.results
+          .slice(0, 5)
+          .map((like: MovieType, index: number) => {
+            return (
+              <div key={index}>
+                <Image
+                  alt=""
+                  width={281}
+                  height={300}
+                  src={`https://image.tmdb.org/t/p/original/${like.poster_path}`}
+                  className="object-cover rounded-t-lg"
+                />
+                <div className="cardsInfo bg-zinc-900 rounded-lg p-3">
+                  <div className="svg vote flex gap-2">
+                    <img className="w-[16px] h-[16px]" src="/Star.svg" alt="" />
+                    {like.vote_average / 10}
+                  </div>
+                  {like.original_title}
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

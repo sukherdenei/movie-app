@@ -19,6 +19,8 @@ export type MovieType = {
 export type genreType = {
   id: number;
   name: string;
+  actors: string;
+  stars: string;
 };
 
 export const token =

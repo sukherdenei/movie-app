@@ -1,12 +1,14 @@
 import { ModeToggle } from "@/components/theme-toggle";
-// import { Button } from "@/components/ui/button";
 import { PopoverDemo } from "./Popever-genre";
+import Link from "next/link";
 
 const Header = () => {
   return (
     <div className="w-[1280px] h-[36px] items-center flex    sticky top-0 bg-black justify-between m-auto cursor-pointer mt-5 rounded-sm">
-      <img src="./Logo.svg" alt="" />
-      {/* <Button className="w-[97px] h-[36px]">Genre</Button> */}
+      <Link href={"http://localhost:3000/"}>
+        <img src="./Logo.svg" alt="" />
+      </Link>
+
       <PopoverDemo />
       <input
         type="text"
@@ -14,13 +16,6 @@ const Header = () => {
         className="outline-none border-2 w-[379px] h-[36px] rounded-sm border-zinc-600"
       />
       <ModeToggle />
-      {/* <Button
-        // onChange={ModeToggle}
-        variant={"outline"}
-        size={"icon"}
-        className="dark h-[36px]"
-      ></Button> */}
-      {/* <img src="./Modes.svg" alt="" /> */}
     </div>
   );
 };

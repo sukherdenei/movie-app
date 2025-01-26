@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { MovieType, token } from "../Util";
-
 import Image from "next/image";
 
 export default async function TopRated() {
@@ -21,20 +21,24 @@ export default async function TopRated() {
       <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
-            <div key={index}>
+            <Link
+              className="bg-stone-700 rounded-lg"
+              href={`/cardinfo/${movie.id}`}
+              key={index}
+            >
               <Image
                 alt=""
                 width={1000}
                 height={1000}
-                className="w-[230px] h-[439px] cursor-pointer rounded-lg"
+                className="w-[230px] h-[439px] cursor-pointer "
                 src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
               />
               <div className="svg&vote flex gap-2">
                 <img src="./Star.svg" alt="" />
                 <p>{movie?.vote_average}/10</p>
               </div>
-              <h1>{movie?.original_title}</h1>
-            </div>
+              <h1 className="p-5">{movie?.original_title}</h1>
+            </Link>
           );
         })}
       </div>

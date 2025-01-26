@@ -28,7 +28,11 @@ export default async function Popular() {
       <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
-            <div key={index}>
+            <Link
+              className="bg-stone-700 rounded-lg"
+              href={`/cardinfo/${card.id}`}
+              key={index}
+            >
               <Image
                 alt=""
                 width={1000}
@@ -40,8 +44,8 @@ export default async function Popular() {
                 <img src="./Star.svg" alt="" />
                 <p>{card.vote_average}/10</p>
               </div>
-              <h1>{card.original_title}</h1>
-            </div>
+              <h1 className="p-5">{card.original_title}</h1>
+            </Link>
           );
         })}
       </div>

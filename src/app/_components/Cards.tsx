@@ -14,6 +14,7 @@ export default async function Cards() {
   );
 
   const data = await response.json();
+
   return (
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center ">
       <div className="flex justify-between">
@@ -30,13 +31,17 @@ export default async function Cards() {
       <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
           return (
-            <Link href={`/cardinfo/${movie.id}`} key={index}>
+            <Link
+              className="bg-stone-700 rounded-lg"
+              href={`/cardinfo/${movie.id}`}
+              key={index}
+            >
               <div className="w-[230px] h-[510px]">
                 <Image
                   alt=""
                   width={1000}
                   height={1000}
-                  className="w-[230px] h-[439px] cursor-pointer rounded-lg"
+                  className="w-[230px] h-[439px] cursor-pointer "
                   src={
                     "https://image.tmdb.org/t/p/original/" + movie?.poster_path
                   }
@@ -45,7 +50,7 @@ export default async function Cards() {
                   <img src="./Star.svg" alt="" />
                   <p>{movie?.vote_average}/10</p>
                 </div>
-                <h1>{movie?.original_title}</h1>
+                <h1 className="p-5">{movie?.original_title}</h1>
               </div>
             </Link>
           );

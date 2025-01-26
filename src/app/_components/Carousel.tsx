@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 
 import { MovieType, token } from "../Util";
+import Link from "next/link";
 
 export default async function Carousels() {
   const response = await fetch(
@@ -28,21 +29,21 @@ export default async function Carousels() {
     <Carousel className="w-[100%] relative">
       <CarouselContent className="h-[600px] items-center">
         <div>
-          <div className="absolute left-[150px] bottom-100 flex flex-col">
-            <p>Now PLaying</p>
+          <div className="absolute left-[150px] bottom-100 flex flex-col items-center ">
+            <button className="bg-slate-950 rounded-md bgb w-[145px] h-[40px]">
+              Watch Trailer
+            </button>
             <h2 className="text-3xl">Wicked</h2>
-            {/* <div className="w-[200px] h-[200px] bg-blue-500">
-              {data.results.map((info: MovieType) => {
-                return <p>{info.original_title}</p>;
-              })}
-            </div> */}
           </div>
         </div>
         {data.results.slice(0, 20).map((cover: MovieType, index: number) => (
           <CarouselItem key={index}>
             <div>
               <Card>
-                <CardContent className="flex items-center justify-center">
+                <Link
+                  href={`/cardinfo/${cover.id}`}
+                  className="flex items-center justify-center"
+                >
                   <Image
                     alt=""
                     width={1000}
@@ -53,7 +54,7 @@ export default async function Carousels() {
                       cover.backdrop_path
                     }
                   />
-                </CardContent>
+                </Link>
               </Card>
             </div>
           </CarouselItem>

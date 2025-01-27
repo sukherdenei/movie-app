@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { MovieType, token } from "../Util";
+import { genreType, MovieType, token } from "../Util";
 import Link from "next/link";
 
 export default async function Carousels() {
@@ -26,19 +26,11 @@ export default async function Carousels() {
   const data = await response.json();
 
   return (
-    <Carousel className="w-[100%] relative">
+    <Carousel className="w-[100%] relative z-0">
       <CarouselContent className="h-[600px] items-center">
-        <div>
-          <div className="absolute left-[150px] bottom-100 flex flex-col items-center ">
-            <button className="bg-slate-950 rounded-md bgb w-[145px] h-[40px]">
-              Watch Trailer
-            </button>
-            <h2 className="text-3xl">Wicked</h2>
-          </div>
-        </div>
         {data.results.slice(0, 20).map((cover: MovieType, index: number) => (
           <CarouselItem key={index}>
-            <div>
+            <div className="relative">
               <Card>
                 <Link
                   href={`/cardinfo/${cover.id}`}
@@ -54,6 +46,17 @@ export default async function Carousels() {
                       cover.backdrop_path
                     }
                   />
+                  <div>
+                    <div className="absolute left-[150px] w-[450px] h-[310px] gap-3 flex flex-col top-[100px]">
+                      <p>Now Playing</p>
+                      <h1>{cover.original_title}</h1>
+                      <p>{cover.vote_average}/10</p>
+                      <p>{cover.overview}</p>
+                      <button className="bg-slate-950 rounded-md bgb w-[145px] h-[40px]">
+                        Watch Trailer
+                      </button>
+                    </div>
+                  </div>
                 </Link>
               </Card>
             </div>

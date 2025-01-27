@@ -25,7 +25,7 @@ export default async function Popular() {
           See more
         </Link>
       </div>
-      <div className="flex flex-wrap gap-5 justify-between">
+      <div className="flex flex-wrap gap-4 justify-between">
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
             <Link
@@ -38,7 +38,7 @@ export default async function Popular() {
                 width={1000}
                 height={1000}
                 className="w-[230px] h-[439px] cursor-pointer rounded-lg"
-                src={"https://image.tmdb.org/t/p/w500/" + card.poster_path}
+                src={"https://image.tmdb.org/t/p/original/" + card.poster_path}
               />
               <div className="svg-vote flex gap-2">
                 <img src="./Star.svg" alt="" />

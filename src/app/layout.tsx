@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ReactNode } from "react";
 import Header from "./_components/Header";
+import Footer from "./_components/Footer";
 type RootLayoutProps = {
   children: ReactNode;
 };
@@ -38,9 +39,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <Header /> */}
+          <Header />
           {children}
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

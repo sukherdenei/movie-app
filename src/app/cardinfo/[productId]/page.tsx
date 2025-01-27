@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Header from "../../_components/Header";
 import { genreType, MovieType, token } from "../../Util";
 import Link from "next/link";
 
@@ -43,7 +42,6 @@ export default async function CardInfo({
 
   return (
     <div className="w-[1280px] p-5 m-auto ">
-      <Header />
       <div className="flex justify-between mt-10">
         <div>
           <p>{data.original_title}</p>
@@ -93,12 +91,7 @@ export default async function CardInfo({
 
       <div className="MORE-LIKE-THIS SEE MORE flex justify-between">
         <h1>More like this</h1>
-        <Link
-          href="https://pinecone-academy-movie-app.vercel.app/category/1184918/similar"
-          target="_blank"
-        >
-          See more
-        </Link>
+        <Link href={`/similiar/${productId}`}>See more</Link>
       </div>
 
       <div className="moreLikeThisDiv flex gap-5 mt-5 justify-between">
@@ -106,22 +99,29 @@ export default async function CardInfo({
           .slice(0, 5)
           .map((like: MovieType, index: number) => {
             return (
-              <div key={index}>
-                <Image
-                  alt=""
-                  width={281}
-                  height={300}
-                  src={`https://image.tmdb.org/t/p/original/${like.poster_path}`}
-                  className="object-cover rounded-t-lg"
-                />
-                <div className="cardsInfo bg-zinc-900 rounded-lg p-3">
-                  <div className="svg vote flex gap-2">
-                    <img className="w-[16px] h-[16px]" src="/Star.svg" alt="" />
-                    {like.vote_average / 10}
+              <Link href={`/cardinfo/${like.id}`}>
+                {" "}
+                <div key={index}>
+                  <Image
+                    alt=""
+                    width={281}
+                    height={300}
+                    src={`https://image.tmdb.org/t/p/original/${like.poster_path}`}
+                    className="object-cover rounded-t-lg"
+                  />
+                  <div className="cardsInfo bg-zinc-900 rounded-lg p-3">
+                    <div className="svg vote flex gap-2">
+                      <img
+                        className="w-[16px] h-[16px]"
+                        src="/Star.svg"
+                        alt=""
+                      />
+                      {like.vote_average / 10}
+                    </div>
+                    {like.original_title}
                   </div>
-                  {like.original_title}
                 </div>
-              </div>
+              </Link>
             );
           })}
       </div>

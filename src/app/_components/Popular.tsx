@@ -29,7 +29,7 @@ export default async function Popular() {
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
             <Link
-              className="bg-stone-700 rounded-lg"
+              className="bg-stone-700 rounded-lg w-[230px] h-[439px]"
               href={`/cardinfo/${card.id}`}
               key={index}
             >
@@ -37,7 +37,7 @@ export default async function Popular() {
                 alt=""
                 width={1000}
                 height={1000}
-                className="w-[230px] h-[439px] cursor-pointer rounded-lg"
+                className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
                 src={"https://image.tmdb.org/t/p/original/" + card.poster_path}
               />
               <div className="svg-vote flex gap-2">

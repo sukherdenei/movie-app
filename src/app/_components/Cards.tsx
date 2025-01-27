@@ -36,12 +36,12 @@ export default async function Cards() {
               href={`/cardinfo/${movie.id}`}
               key={index}
             >
-              <div className="w-[230px] h-[510px]">
+              <div className="w-[230px] h-[439px]">
                 <Image
                   alt=""
                   width={1000}
                   height={1000}
-                  className="w-[230px] h-[439px] cursor-pointer "
+                  className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
                   src={
                     "https://image.tmdb.org/t/p/original/" + movie?.poster_path
                   }

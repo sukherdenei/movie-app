@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { genreType, MovieType, token } from "../../Util";
 import Link from "next/link";
+import { DialogCloseButton } from "@/app/_components/Dialog";
 
 export default async function CardInfo({
   params: { productId },
@@ -41,8 +42,8 @@ export default async function CardInfo({
   const moreLikeData = await moreLikeThis.json();
 
   return (
-    <div className="w-[1280px] p-5 m-auto ">
-      <div className="flex justify-between mt-10">
+    <div className="w-[1280px] p-5 m-auto">
+      <div className="flex justify-between mt-5 mb-5">
         <div>
           <p>{data.original_title}</p>
           <p>{data.release_date}</p>
@@ -58,13 +59,25 @@ export default async function CardInfo({
         </div>
       </div>
 
-      <Image
-        alt=""
-        width={1000}
-        height={1000}
-        className="w-[280px] h-[428px] cursor-pointer rounded-lg"
-        src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
-      />
+      <div className="flex  gap-x-52 mb-5">
+        <Image
+          alt=""
+          width={1000}
+          height={1000}
+          className="w-[280px] h-[428px] cursor-pointer rounded-lg"
+          src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
+        />
+        <Image
+          width={400}
+          height={300}
+          src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
+          alt=""
+          className="w-[760px] h-[428px]"
+        />
+        <div className="absolute right-[910px] bottom-[320px]">
+          <DialogCloseButton />
+        </div>
+      </div>
 
       <div className="flex gap-9">
         {data.genres.map((genre: genreType, index: number) => {
@@ -100,14 +113,13 @@ export default async function CardInfo({
           .map((like: MovieType, index: number) => {
             return (
               <Link href={`/cardinfo/${like.id}`}>
-                {" "}
-                <div key={index}>
+                <div className="w-[190px] h-[372px]" key={index}>
                   <Image
                     alt=""
                     width={281}
                     height={300}
                     src={`https://image.tmdb.org/t/p/original/${like.poster_path}`}
-                    className="object-cover rounded-t-lg"
+                    className="rounded-t-lg w-[190px]"
                   />
                   <div className="cardsInfo bg-zinc-900 rounded-lg p-3">
                     <div className="svg vote flex gap-2">

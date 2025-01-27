@@ -9,7 +9,6 @@ export function ModeToggle() {
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    // Темаа тохируулна
     setTheme(theme === "dark" ? "light" : "dark");
   };
 

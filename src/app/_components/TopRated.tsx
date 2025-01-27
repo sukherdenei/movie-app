@@ -26,18 +26,20 @@ export default async function TopRated() {
               href={`/cardinfo/${movie.id}`}
               key={index}
             >
-              <Image
-                alt=""
-                width={1000}
-                height={1000}
-                className="w-[230px] h-[439px] cursor-pointer "
-                src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
-              />
-              <div className="svg&vote flex gap-2">
-                <img src="./Star.svg" alt="" />
-                <p>{movie?.vote_average}/10</p>
+              <div className="w-[230px] h-[439px]">
+                <Image
+                  alt=""
+                  width={1000}
+                  height={1000}
+                  className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
+                  src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
+                />
+                <div className="svg&vote flex gap-2">
+                  <img src="./Star.svg" alt="" />
+                  <p>{movie?.vote_average}/10</p>
+                </div>
+                <h1 className="p-5">{movie?.original_title}</h1>
               </div>
-              <h1 className="p-5">{movie?.original_title}</h1>
             </Link>
           );
         })}

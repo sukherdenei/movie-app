@@ -12,6 +12,7 @@ import {
 
 import { genreType, MovieType, token } from "../Util";
 import Link from "next/link";
+import { DialogCloseButton } from "./Dialog";
 
 export default async function Carousels() {
   const response = await fetch(
@@ -52,9 +53,9 @@ export default async function Carousels() {
                       <h1>{cover.original_title}</h1>
                       <p>{cover.vote_average}/10</p>
                       <p>{cover.overview}</p>
-                      <button className="bg-slate-950 rounded-md bgb w-[145px] h-[40px]">
-                        Watch Trailer
-                      </button>
+                      <div>
+                        <DialogCloseButton />
+                      </div>
                     </div>
                   </div>
                 </Link>

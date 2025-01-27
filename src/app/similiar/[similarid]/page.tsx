@@ -27,7 +27,7 @@ export default async function Similiar({
               width={281}
               height={300}
               src={`https://image.tmdb.org/t/p/original/${similiar.poster_path}`}
-              className="object-cover rounded-t-lg"
+              className="object-cover w-[230px] h-[340px] cursor-pointer rounded-t-lg"
             />
             <div className="flex">
               <img src="/Star.svg" alt="" />

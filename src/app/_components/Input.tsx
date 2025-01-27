@@ -1,48 +1,49 @@
 "use client";
-import Inputs from "@/lib/Inputs";
 import { useState } from "react";
+import fetchInputs from "@/components/util/serach";
 import { MovieType } from "../Util";
 import Link from "next/link";
-import fetchinputs from "@/components/util/serach";
 
 export default function Input() {
-  const [input, setInput] = useState("");
-  const [inputValue, setInputValue] = useState([]);
+  const [search, setSearch] = useState("");
+  const [value, setValue] = useState([]);
 
   const addHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value.toLowerCase();
-    setInput(input);
-    if (input == "") {
-      setInputValue([]);
+    const search = e.target.value.toLocaleLowerCase();
+    setSearch(search);
+    if (search == "") {
+      setValue([]);
       return;
     }
-    const pesponce = await fetchinputs(
-      `/search/movie?query=${e.target.value.toLowerCase()}&language=en-US`
+
+    const response = await fetchInputs(
+      `/search/movie?query=${e.target.value.toLocaleLowerCase}&language=en-US`
     );
-    console.log(pesponce);
-    setInputValue(pesponce.results || []);
+    console.log(response);
+    setValue(response.results || []);
   };
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Search"
+        placeholder="search"
+        value={search}
         onChange={addHandler}
-        value={input}
       />
-      {inputValue.slice(0, 5).map((movie: MovieType, index: number) => {
+      {value.slice(0, 5).map((movie: MovieType, index: number) => {
         return (
-          <div>
-            <p>{input}</p>
-            <Link href={`/cardinfo${movie.id}`}>
-              <img
-                src={
-                  "https://image.tmdb.org/t/p/original/" + movie?.poster_path
-                }
-                alt=""
-              />
-              <button key={index}>{movie?.original_title}</button>
+          <div className="flex flex-col">
+            <Link href={`/product-detail/${movie.id}`}>
+              <div>
+                <img
+                  src={
+                    "https://image.tmdb.org/t/p/original/" + movie?.poster_path
+                  }
+                />
+                <button key={index}>{movie?.original_title}</button>
+                <p>{search}</p>
+              </div>
             </Link>
           </div>
         );

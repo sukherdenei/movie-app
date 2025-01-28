@@ -3,7 +3,7 @@ export type MovieType = {
   backdrop_path: string;
   original_title: string;
   genre_ids: Array<number>;
-  id: number;
+  id: string;
   original_language: string;
   overview: string;
   popularity: number;

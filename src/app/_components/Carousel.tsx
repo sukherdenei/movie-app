@@ -33,32 +33,29 @@ export default async function Carousels() {
           <CarouselItem key={index}>
             <div className="relative">
               <Card>
-                <Link
-                  href={`/cardinfo/${cover.id}`}
-                  className="flex items-center justify-center"
-                >
-                  <Image
-                    alt=""
-                    width={1000}
-                    height={1000}
-                    className="w-[100vw] h-[600px]"
-                    src={
-                      "https://image.tmdb.org/t/p/original/" +
-                      cover.backdrop_path
-                    }
-                  />
-                  <div>
-                    <div className="absolute left-[150px] w-[450px] h-[310px] gap-3 flex flex-col top-[100px]">
-                      <p>Now Playing</p>
-                      <h1>{cover.original_title}</h1>
-                      <p>{cover.vote_average}/10</p>
-                      <p>{cover.overview}</p>
-                      <div>
-                        <DialogCloseButton />
-                      </div>
+                <div className="flex items-center justify-center">
+                  <Link href={`/cardinfo/${cover.id}`}>
+                    <Image
+                      alt=""
+                      width={1000}
+                      height={1000}
+                      className="w-[100vw] h-[600px]"
+                      src={
+                        "https://image.tmdb.org/t/p/original/" +
+                        cover.backdrop_path
+                      }
+                    />
+                  </Link>
+                  <div className="absolute z-50 left-[150px] w-[450px] h-[310px] gap-3 flex flex-col top-[100px]">
+                    <p>Now Playing</p>
+                    <h1>{cover.original_title}</h1>
+                    <p>{cover.vote_average}/10</p>
+                    <p>{cover.overview}</p>
+                    <div>
+                      <DialogCloseButton id={cover.id} />
                     </div>
                   </div>
-                </Link>
+                </div>
               </Card>
             </div>
           </CarouselItem>

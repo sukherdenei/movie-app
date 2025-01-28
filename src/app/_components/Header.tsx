@@ -3,11 +3,12 @@ import { PopoverDemo } from "./Popever-genre";
 import Link from "next/link";
 import Image from "next/image";
 import Input from "./Input";
+import { Card } from "@/components/ui/card";
 
 const Header = () => {
   return (
-    <div className="w-full bg-black sticky top-0 z-10">
-      <div className="w-[1260px] h-[59px] items-center flex  sticky top-0 bg-black justify-between m-auto cursor-pointer rounded-sm z-50">
+    <Card className="w-full sticky top-0 z-10">
+      <div className="w-[1260px] h-[59px] items-center flex  sticky top-0 justify-between m-auto cursor-pointer rounded-sm z-50">
         <Link href={"http://localhost:3000/"}>
           <Image
             width={100}
@@ -21,7 +22,7 @@ const Header = () => {
         <Input />
         <ModeToggle />
       </div>
-    </div>
+    </Card>
   );
 };
 export default Header;

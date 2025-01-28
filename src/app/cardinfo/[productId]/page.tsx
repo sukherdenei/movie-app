@@ -74,8 +74,8 @@ export default async function CardInfo({
           alt=""
           className="w-[760px] h-[428px]"
         />
-        <div className="absolute right-[910px] bottom-[320px]">
-          <DialogCloseButton />
+        <div className="absolute right-[780px] bottom-[430px]">
+          <DialogCloseButton id={data.id} />
         </div>
       </div>
 

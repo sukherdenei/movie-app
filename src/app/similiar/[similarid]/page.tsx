@@ -16,7 +16,7 @@ export default async function Similiar({
     }
   );
   const moreLikeData = await moreLikeThis.json();
-  console.log(moreLikeData);
+  // console.log(moreLikeData);
   return (
     <div className="flex flex-wrap m-auto justify-between mt-10 gap-5 w-[1280px]">
       {moreLikeData.results.map((similiar: MovieType, index: number) => {

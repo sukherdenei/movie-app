@@ -1,5 +1,7 @@
+import CardInfo from "@/app/cardinfo/[productId]/page";
 import { MovieType, token } from "@/app/Util";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Similiar({
   params: { similarid },
@@ -21,7 +23,11 @@ export default async function Similiar({
     <div className="flex flex-wrap m-auto justify-between mt-10 gap-5 w-[1280px]">
       {moreLikeData.results.map((similiar: MovieType, index: number) => {
         return (
-          <div key={index} className="w-[230px] h-[439px]">
+          <Link
+            href={`/cardinfo/${similiar.id}`}
+            key={index}
+            className="w-[230px] h-[439px]"
+          >
             <Image
               alt=""
               width={281}
@@ -34,7 +40,7 @@ export default async function Similiar({
               <p>{similiar.original_title}</p>
             </div>
             <p>{similiar.vote_average}/10</p>
-          </div>
+          </Link>
         );
       })}
     </div>

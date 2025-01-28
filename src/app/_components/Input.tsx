@@ -20,7 +20,7 @@ export default function Input() {
     const response = await fetchInputs(
       `/search/movie?query=${search}&language=en-US&page=${1}`
     );
-    console.log(response);
+    // console.log(response);
     setValue(response.results || []);
   };
 

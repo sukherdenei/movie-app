@@ -18,12 +18,7 @@ export default async function Popular() {
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
       <div className="flex justify-between">
         <h1 className="pb-5 text-3xl">Popular</h1>
-        <Link
-          href="https://pinecone-academy-movie-app.vercel.app/category/popular"
-          target="_blank"
-        >
-          See more
-        </Link>
+        <Link href={`cardinfo${data.id}`}>See more</Link>
       </div>
       <div className="flex flex-wrap gap-4 justify-between">
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {

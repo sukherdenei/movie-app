@@ -16,7 +16,7 @@ export default async function TopRated() {
   const data = await response.json();
 
   return (
-    <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
+    <div className="flex mx-[auto] flex-col w-[1280px] mt-5 gap-10 justify-center">
       <h1 className="pb-5 text-3xl">Top rated</h1>
       <div className="flex flex-wrap gap-2 justify-between items-center">
         {data.results.slice(0, 10).map((movie: MovieType, index: number) => {

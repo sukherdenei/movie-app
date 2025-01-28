@@ -5,6 +5,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { genreType, token } from "../Util";
+import Link from "next/link";
 
 export async function PopoverDemo() {
   const response = await fetch(
@@ -18,6 +19,7 @@ export async function PopoverDemo() {
   );
   const data = await response.json();
   //   console.log(data.genres[6].name);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -28,16 +30,18 @@ export async function PopoverDemo() {
           <h2>Genre</h2>
           <p>See lists of movies by genre</p>
         </div>
+
         {data.genres.map((genre: genreType) => {
           return (
-            <div
+            <Link
+              href={`/cardinfo/${genre.id}`}
               className="flex flex-wrap cursor-pointer hover:bg-slate-800"
               key={genre.id}
             >
               <Button className="border-[1px] bg-black border-neutral-500 rounded-xl cursor-pointer">
                 {genre.name}
               </Button>
-            </div>
+            </Link>
           );
         })}
       </PopoverContent>

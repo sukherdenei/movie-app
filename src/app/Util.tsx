@@ -15,6 +15,7 @@ export type MovieType = {
   vote_count: number;
   genres: string;
   directer: string;
+  name: string;
 };
 export type genreType = {
   id: number;

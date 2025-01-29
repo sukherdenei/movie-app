@@ -26,7 +26,7 @@ export async function PopoverDemo() {
         <Button variant="outline">Genre</Button>
       </PopoverTrigger>
       <PopoverContent className="w-[650px] flex flex-wrap bg-black">
-        <div className="w-[450px] absolute">
+        <div className="w-[450px]">
           <h2>Genre</h2>
           <p>See lists of movies by genre</p>
         </div>
@@ -34,7 +34,7 @@ export async function PopoverDemo() {
         {data.genres.map((genre: genreType) => {
           return (
             <Link
-              href={`/cardinfo/${genre.id}`}
+              href={`/genreLink/${genre.id}`}
               className="flex flex-wrap cursor-pointer hover:bg-slate-800"
               key={genre.id}
             >

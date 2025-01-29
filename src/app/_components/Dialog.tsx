@@ -20,7 +20,7 @@ export async function DialogCloseButton({ id }: { id: string }) {
     }
   );
   const trailer = await trailerData.json();
-  console.log(trailer);
+
   return (
     <div>
       <Dialog>

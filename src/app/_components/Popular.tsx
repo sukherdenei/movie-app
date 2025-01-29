@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MovieType, token } from "../Util";
 import Image from "next/image";
+import { Card } from "@/components/ui/card";
 
 export default async function Popular() {
   const response = await fetch(
@@ -18,7 +19,8 @@ export default async function Popular() {
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
       <div className="flex justify-between">
         <h1 className="pb-5 text-3xl">Popular</h1>
-        <Link href={`cardinfo${data.id}`}>See more</Link>
+
+        <Link href={"/upcomingInfo/popular"}>See more</Link>
       </div>
       <div className="flex flex-wrap gap-4 justify-between">
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {

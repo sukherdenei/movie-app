@@ -4,6 +4,8 @@ import fetchInputs from "@/components/util/serach";
 import { MovieType } from "../Util";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import SearchPage from "../search/page";
 
 export default function Input() {
   const [search, setSearch] = useState("");
@@ -33,7 +35,7 @@ export default function Input() {
         onChange={addHandler}
         className=""
       />
-      {/* <p>{search}</p> */}
+
       <div className="absolute top-[40px]">
         {value.slice(0, 5).map((movie: MovieType, index: number) => {
           return (
@@ -64,13 +66,15 @@ export default function Input() {
                       <div>{movie.release_date}</div>
                       <div>See more</div>
                     </div>
-                    {/* <p>See all results for "search"</p> */}
                   </button>
                 </Card>
               </Link>
             </div>
           );
         })}
+        <Card className="h-[34px] flex items-center justify-center">
+          See all results for " search "
+        </Card>
       </div>
     </div>
   );

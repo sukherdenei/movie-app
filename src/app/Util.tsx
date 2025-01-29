@@ -16,6 +16,9 @@ export type MovieType = {
   genres: string;
   directer: string;
   name: string;
+  total_results: number;
+  total_pages: number;
+  titles_count: number;
 };
 export type genreType = {
   id: number;

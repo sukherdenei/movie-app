@@ -1,5 +1,6 @@
 import { ToggleGroupDemo } from "@/app/_components/ButtonToggle";
 import { MovieType, token } from "@/app/Util";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function genrePage({
@@ -17,27 +18,32 @@ export default async function genrePage({
     }
   );
   const genre = await response.json();
+  console.log(genre);
+
   return (
-    <div className="flex w-[1280px] m-auto bg-slate-500 justify-between mt-10">
-      <div className="w-[600px]">
+    <div className="flex w-[1280px] m-auto justify-between mt-10">
+      <div className="w-[400px]">
         <ToggleGroupDemo />
       </div>
-      <div className="w-[600px] flex flex-wrap justify-between bg-purple-700 gap-5">
+      <h1>{genre.total_results} title</h1>
+      <div className="w-[800px] flex flex-wrap justify-between  gap-5">
         {genre.results?.map((genres: MovieType, index: number) => {
           return (
             <div key={index}>
               <Link href={`/cardinfo/${genres.id}`}>
                 <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md">
-                  <img
+                  <Image
+                    width={200}
+                    height={200}
                     src={`https://image.tmdb.org/t/p/original/${genres.poster_path}`}
                     alt=""
                     className="w-[165px] h-[244px] rounded-t-md"
                   />
                   <div className="">
                     <img src="/Star.svg" alt="" />
-                    {genres.vote_average}/10
+                    <p> {genres.vote_average}/10</p>
                   </div>
-                  {genres.original_title}
+                  <p>{genres.title}</p>
                 </div>
               </Link>
             </div>

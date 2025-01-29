@@ -80,12 +80,8 @@ export default async function CardInfo({
       </div>
 
       <div className="flex gap-9">
-        {data.genres.map((genre: genreType, index: number) => {
-          return (
-            <button className="" key={index}>
-              {genre.name}
-            </button>
-          );
+        {data.genres?.map((genre: genreType, index: number) => {
+          return <button key={index}>{genre.name}</button>;
         })}
       </div>
       <p className="w-[1080px] h-[90px]">{data.overview}</p>

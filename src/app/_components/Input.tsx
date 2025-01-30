@@ -4,8 +4,6 @@ import fetchInputs from "@/components/util/serach";
 import { MovieType } from "../Util";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import SearchPage from "../search/searchId/page";
 
 export default function Input() {
   const [search, setSearch] = useState("");

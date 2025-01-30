@@ -2,7 +2,7 @@ import Image from "next/image";
 import { MovieType, token } from "../../Util";
 import { ToggleGroupDemo } from "@/app/_components/ButtonToggle";
 import Link from "next/link";
-import { Card } from "@/components/ui/card";
+import { PaginationDemo } from "@/app/_components/Pagination";
 
 export default async function SearchPage({
   params: { searchId },
@@ -19,37 +19,49 @@ export default async function SearchPage({
     }
   );
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
 
   return (
-    <div className="flex justify-between w-[1280px] m-auto mt-10">
-      <div className="w-[387px] h-[352px]">
-        <ToggleGroupDemo />
-      </div>
-      <div>
-        <h1>Search results</h1>
-        <div className="w-[800px] gap-2 rounded-t-sm flex flex-wrap">
-          {data.results?.map((movie: MovieType, index: number) => {
-            return (
-              <Card>
-                <Link href={`/cardinfo/${movie.id}`} key={index}>
-                  <Image
-                    alt=""
-                    width={281}
-                    height={300}
-                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                    className="rounded-t-lg w-[190px]"
-                  />
-                  <div className="flex gap-2">
-                    <img src="/Star.svg" alt="" />
-                    <p>{movie.vote_average}/10</p>
-                  </div>
-                  <p>{movie.title}</p>
-                </Link>
-              </Card>
-            );
-          })}
+    <div className="w-[1280px] m-auto mt-[52px]">
+      <h1 className="text-[30px] font-semibold">Search filter</h1>
+      <div className="flex w-[1280px] m-auto justify-between mt-10 ">
+        <div className="w-[400px] sticky top-10">
+          <h2 className="text-[24px] font-semibold ">Genres</h2>
+          <p className="text-[16px] mb-[20px]">See lists of movies by genre</p>
+          <ToggleGroupDemo />
         </div>
+        <div className="border-l-[0.5px] pl-[20px]">
+          <h1 className="mb-[32px] text-[20px]">{data.total_results} title</h1>
+          <div className="w-[800px] flex flex-wrap justify-between  gap-5">
+            {data.results?.map((movie: MovieType, index: number) => {
+              return (
+                <div key={index}>
+                  <Link href={`/cardinfo/${movie.id}`}>
+                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden">
+                      <Image
+                        width={200}
+                        height={200}
+                        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                        alt=""
+                        className="w-[165px] h-[244px] rounded-t-md"
+                      />
+                      <div className="p-[10px]">
+                        <div className="flex gap-[10px] text-[14px] items-center ">
+                          <img src="/Star.svg" alt="" />
+                          <p> {movie.vote_average}/10</p>
+                        </div>
+                        <p className="text-[17px] ">{movie.title}</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <div className="mt-10">
+        <PaginationDemo />
       </div>
     </div>
   );

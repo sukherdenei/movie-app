@@ -42,7 +42,7 @@ export default async function CardInfo({
   const moreLikeData = await moreLikeThis.json();
 
   return (
-    <div className="w-[1280px] p-5 m-auto">
+    <div className="w-[1080px] p-5 m-auto">
       <div className="flex justify-between mt-5 mb-5">
         <div>
           <p>{data.original_title}</p>
@@ -52,7 +52,7 @@ export default async function CardInfo({
         <div className="header-right">
           <h2>Rating</h2>
           <div className="flex  justify-center items-center gap-2">
-            <img src="/Star.svg" alt="" className="w-[30px] h-[50px]" />
+            <img src="/Star.svg" alt="" className="w-[28px] h-[28px]" />
             <p>{data.vote_average}/10</p>
             <p>{data.vote_count}</p>
           </div>
@@ -64,7 +64,7 @@ export default async function CardInfo({
           alt=""
           width={1000}
           height={1000}
-          className="w-[280px] h-[428px] cursor-pointer rounded-lg"
+          className="w-[290px] h-[428px] cursor-pointer rounded-lg"
           src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
         />
         <Image

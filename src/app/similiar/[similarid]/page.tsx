@@ -20,7 +20,7 @@ export default async function Similiar({
   const moreLikeData = await moreLikeThis.json();
   // console.log(moreLikeData);
   return (
-    <div className="flex flex-wrap m-auto justify-between mt-10 gap-5 w-[1280px]">
+    <div className="flex flex-wrap m-auto justify-between mt-10 w-[1280px]">
       {moreLikeData.results.map((similiar: MovieType, index: number) => {
         return (
           <Link
@@ -28,18 +28,23 @@ export default async function Similiar({
             key={index}
             className="w-[230px] h-[439px]"
           >
-            <Image
-              alt=""
-              width={281}
-              height={300}
-              src={`https://image.tmdb.org/t/p/original/${similiar.poster_path}`}
-              className="object-cover w-[230px] h-[340px] cursor-pointer rounded-t-lg"
-            />
-            <div className="flex">
-              <img src="/Star.svg" alt="" />
-              <p>{similiar.original_title}</p>
+            <div className="w-[230px] h-[439px] rounded-b-md ">
+              <Image
+                alt=""
+                width={1000}
+                height={1000}
+                src={`https://image.tmdb.org/t/p/original/${similiar.poster_path}`}
+                className="object-cover w-[230px] h-[340px] cursor-pointer rounded-t-lg "
+              />
+              <div className="flex gap-1 mb-[5px]">
+                <img src="/Star.svg" alt="" className="w-[16px] h-[16px]" />
+                <p className="text-[14px] font-semibold">
+                  {similiar.vote_average.toFixed(1)}
+                  <span className="text-[12px] font-medium">/10</span>
+                  <p className="text-[18px]">{similiar.original_title}</p>
+                </p>
+              </div>
             </div>
-            <p>{similiar.vote_average}/10</p>
           </Link>
         );
       })}

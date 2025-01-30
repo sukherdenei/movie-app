@@ -14,35 +14,41 @@ export default async function TopRated() {
     }
   );
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
 
   return (
-    <div className="flex mx-[auto] flex-col w-[1280px] gap-5 justify-center">
-      <div className="flex justify-between">
-        <h1 className="pb-5 text-3xl">Top rated</h1>
-        <Link href={"/upcomingInfo/top_rated"}>See more</Link>
+    <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
+      <div className="flex justify-between  items-center">
+        <h1 className="pb-[36px] text-[24px] font-semibold">Top rated</h1>
+
+        <Link href={"/upcomingInfo/top_rated"} className="text-[14px]">
+          See more
+        </Link>
       </div>
-      <div className="flex flex-wrap gap-2 justify-between items-center">
-        {data.results.slice(0, 10).map((movie: MovieType, index: number) => {
+      <div className="flex flex-wrap gap-5 justify-between">
+        {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
             <Link
-              className="bg-stone-700 rounded-lg"
-              href={`/cardinfo/${movie.id}`}
+              className="bg-stone-700 rounded-lg w-[230px] h-[439px]"
+              href={`/cardinfo/${card.id}`}
               key={index}
             >
-              <div className="w-[230px] h-[439px]">
-                <Image
-                  alt=""
-                  width={1000}
-                  height={1000}
-                  className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
-                  src={"https://image.tmdb.org/t/p/w500/" + movie?.poster_path}
-                />
-                <div className="svg&vote flex gap-2">
-                  <img src="./Star.svg" alt="" />
-                  <p>{movie?.vote_average}/10</p>
+              <Image
+                alt=""
+                width={1000}
+                height={1000}
+                className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
+                src={"https://image.tmdb.org/t/p/original/" + card.poster_path}
+              />
+              <div className="p-[8px]">
+                <div className="flex gap-1 mb-[5px]">
+                  <img src="./Star.svg" alt="" className="w-[16px] h-[16px]" />
+                  <p className="text-[14px] font-semibold">
+                    {card.vote_average.toFixed(1)}
+                    <span className="text-[12px] font-medium">/10</span>
+                  </p>
                 </div>
-                <h1 className="p-5">{movie?.original_title}</h1>
+                <h1 className="text-[18px]">{card.original_title}</h1>
               </div>
             </Link>
           );

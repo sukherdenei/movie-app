@@ -1,4 +1,5 @@
 import { ToggleGroupDemo } from "@/app/_components/ButtonToggle";
+import { PaginationDemo } from "@/app/_components/Pagination";
 import { MovieType, token } from "@/app/Util";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,10 +19,10 @@ export default async function genrePage({
     }
   );
   const genre = await response.json();
-  console.log(genre);
+  // console.log(genre);
 
   return (
-    <div className="w-[1280px] m-auto mt-[52px] ">
+    <div className="w-[1280px] m-auto mt-[52px]">
       <h1 className="text-[30px] font-semibold">Search filter</h1>
       <div className="flex w-[1280px] m-auto justify-between mt-10 ">
         <div className="w-[400px] sticky top-10">
@@ -30,7 +31,7 @@ export default async function genrePage({
           <ToggleGroupDemo />
         </div>
         <div className="border-l-[0.5px] pl-[20px]">
-          <h1 className="mb-[32px]">{genre.total_results} title</h1>
+          <h1 className="mb-[32px] text-[20px]">{genre.total_results} title</h1>
           <div className="w-[800px] flex flex-wrap justify-between  gap-5">
             {genre.results?.map((genres: MovieType, index: number) => {
               return (
@@ -58,6 +59,9 @@ export default async function genrePage({
             })}
           </div>
         </div>
+      </div>
+      <div className="mt-10">
+        <PaginationDemo />
       </div>
     </div>
   );

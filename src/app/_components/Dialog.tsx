@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Play } from "lucide-react";
 
 export async function DialogCloseButton({ id }: { id: string }) {
   const trailerData = await fetch(
@@ -24,8 +25,11 @@ export async function DialogCloseButton({ id }: { id: string }) {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="bg-zinc-900 border-neutral-800 w-[150px] h-[40px]">
-          Watch trailer
+        <DialogTrigger>
+          <button className=" w-[100%] h-[auto] flex gap-[8px] items-center bg-white text-black rounded-[10px] py-[8px] px-[16px] text-[14px] ">
+            <Play className="w-[16px] h-[16px]" />
+            Watch Trailer
+          </button>
         </DialogTrigger>
         <DialogContent>
           <DialogTitle></DialogTitle>

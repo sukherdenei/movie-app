@@ -13,7 +13,12 @@ export function ModeToggle() {
   };
 
   return (
-    <Button variant="outline" size="icon" onClick={toggleTheme}>
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={toggleTheme}
+      className="h-[36px]"
+    >
       {theme === "dark" ? <Sun /> : <Moon />}
       <span className="sr-only">Toggle theme</span>
     </Button>

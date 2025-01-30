@@ -18,7 +18,7 @@ export async function ToggleGroupDemo() {
   return (
     <ToggleGroup
       type="multiple"
-      className="flex flex-wrap sticky top-0 flex-col w-[352px] h-[387px]
+      className="flex flex-wrap w-[352px] justify-start
     "
     >
       {genreName.genres.map((genre: MovieType) => (
@@ -26,8 +26,8 @@ export async function ToggleGroupDemo() {
           key={genre.id}
           value={genre.name}
           aria-label={`Toggle ${genre.name}`}
+          className="text-[14px]"
         >
-          <Bold className="h-4 w-4" />
           <Link href={`/genreLink/${genre.id}`}>{genre.name}</Link>
         </ToggleGroupItem>
       ))}

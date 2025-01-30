@@ -18,8 +18,10 @@ const Header = () => {
             className="w-[100px] h-[100px]"
           />
         </Link>
-        <PopoverDemo />
-        <Input />
+        <div className="flex items-center gap-[12px]">
+          <PopoverDemo />
+          <Input />
+        </div>
         <ModeToggle />
       </div>
     </Card>

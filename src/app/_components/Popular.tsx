@@ -17,12 +17,14 @@ export default async function Popular() {
 
   return (
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
-      <div className="flex justify-between">
-        <h1 className="pb-5 text-3xl">Popular</h1>
+      <div className="flex justify-between  items-center">
+        <h1 className="pb-[36px] text-[24px] font-semibold">Popular</h1>
 
-        <Link href={"/upcomingInfo/popular"}>See more</Link>
+        <Link href={"/upcomingInfo/popular"} className="text-[14px]">
+          See more
+        </Link>
       </div>
-      <div className="flex flex-wrap gap-4 justify-between">
+      <div className="flex flex-wrap gap-5 justify-between">
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
             <Link
@@ -37,11 +39,16 @@ export default async function Popular() {
                 className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
                 src={"https://image.tmdb.org/t/p/original/" + card.poster_path}
               />
-              <div className="svg-vote flex gap-2">
-                <img src="./Star.svg" alt="" />
-                <p>{card.vote_average}/10</p>
+              <div className="p-[8px]">
+                <div className="flex gap-1 mb-[5px]">
+                  <img src="./Star.svg" alt="" className="w-[16px] h-[16px]" />
+                  <p className="text-[14px] font-semibold">
+                    {card.vote_average.toFixed(1)}
+                    <span className="text-[12px] font-medium">/10</span>
+                  </p>
+                </div>
+                <h1 className="text-[18px]">{card.original_title}</h1>
               </div>
-              <h1 className="p-5">{card.original_title}</h1>
             </Link>
           );
         })}

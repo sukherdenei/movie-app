@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { genreType, token } from "../Util";
 import Link from "next/link";
+import { Card } from "@/components/ui/card";
 
 export async function PopoverDemo() {
   const response = await fetch(
@@ -23,27 +24,30 @@ export async function PopoverDemo() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">Genre</Button>
+        <Button variant="outline" className="h-[36px]">
+          Genre
+        </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[650px] flex flex-wrap bg-black">
-        <div className="w-[450px]">
+      <PopoverContent className="w-[650px] flex flex-wrap secondary ">
+        <div className="w-[100%] text-secondary border-b-[1px] pb-[15px]">
           <h2>Genre</h2>
           <p>See lists of movies by genre</p>
         </div>
-
-        {data.genres.map((genre: genreType) => {
-          return (
-            <Link
-              href={`/genreLink/${genre.id}`}
-              className="flex flex-wrap cursor-pointer hover:bg-slate-800"
-              key={genre.id}
-            >
-              <Button className="border-[1px] bg-black border-neutral-500 rounded-xl cursor-pointer">
-                {genre.name}
-              </Button>
-            </Link>
-          );
-        })}
+        <div className="flex flex-wrap gap-[20px] pt-[15px]">
+          {data.genres.map((genre: genreType) => {
+            return (
+              <Link
+                href={`/genreLink/${genre.id}`}
+                className="flex flex-wrap cursor-pointer"
+                key={genre.id}
+              >
+                <button className="border-[1px] border-secondary rounded-xl cursor-pointer py-[2px] px-[10px] text-[14px] text-secondary">
+                  {genre.name}
+                </button>
+              </Link>
+            );
+          })}
+        </div>
       </PopoverContent>
     </Popover>
   );

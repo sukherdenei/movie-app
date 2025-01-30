@@ -39,19 +39,35 @@ export default async function Carousels() {
                       alt=""
                       width={1000}
                       height={1000}
-                      className="w-[100vw] h-[600px]"
+                      className="w-[100vw] h-[600px] object-cover"
                       src={
                         "https://image.tmdb.org/t/p/original/" +
                         cover.backdrop_path
                       }
                     />
                   </Link>
-                  <div className="absolute z-50 left-[150px] w-[450px] h-[310px] gap-3 flex flex-col top-[100px]">
-                    <p>Now Playing</p>
-                    <h1>{cover.original_title}</h1>
-                    <p>{cover.vote_average}/10</p>
-                    <p>{cover.overview}</p>
-                    <div>
+                  <div className="absolute z-50 left-[150px] w-[450px] h-[310px] flex flex-col top-[100px]">
+                    <p className="text-[16px]">Now Playing:</p>
+                    <h1 className="text-[36px] font-bold">
+                      {cover.original_title}
+                    </h1>
+                    <div className="flex gap-[4px] items-center mb-[26px]">
+                      <img
+                        className="w-[28px] h-[28px]"
+                        src="Star.svg"
+                        alt=""
+                      />
+                      <p className="text-[18px] font-semibold flex items-center">
+                        {cover.vote_average.toFixed(1)}
+                        <span className="text-[16px] font-normal text-gray-500">
+                          /10
+                        </span>
+                      </p>
+                    </div>
+                    <p className="text-[13px] text-[#fafafa] mb-[16px]">
+                      {cover.overview}
+                    </p>
+                    <div className="">
                       <DialogCloseButton id={cover.id} />
                     </div>
                   </div>

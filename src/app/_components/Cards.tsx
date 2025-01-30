@@ -18,9 +18,11 @@ export default async function Cards() {
 
   return (
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center ">
-      <div className="flex justify-between">
-        <h1 className="pb-5 text-3xl">Upcoming</h1>
-        <Link href={"/upcomingInfo/upcoming"}>See more</Link>
+      <div className="flex justify-between items-center">
+        <h1 className="pb-[36px] text-[24px] font-semibold">Upcoming</h1>
+        <Link href={"/upcomingInfo/upcoming"}>
+          <div className="text-[14px]">See more </div>
+        </Link>
       </div>
 
       <div className="flex flex-wrap gap-5 justify-between">
@@ -41,11 +43,20 @@ export default async function Cards() {
                     "https://image.tmdb.org/t/p/original/" + movie?.poster_path
                   }
                 />
-                <div className="svg&vote flex gap-2">
-                  <img src="./Star.svg" alt="" />
-                  <p>{movie?.vote_average}/10</p>
+                <div className="p-[8px]">
+                  <div className="flex gap-1 mb-[5px]">
+                    <img
+                      src="./Star.svg"
+                      alt=""
+                      className="w-[16px] h-[16px]"
+                    />
+                    <p className="text-[14px] font-semibold">
+                      {movie?.vote_average.toFixed(1)}
+                      <span className="text-[12px] font-medium">/10</span>
+                    </p>
+                  </div>
+                  <h1 className="text-[18px]">{movie?.original_title}</h1>
                 </div>
-                <h1 className="p-5">{movie?.original_title}</h1>
               </div>
             </Link>
           );

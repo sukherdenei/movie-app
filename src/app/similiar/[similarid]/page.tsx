@@ -28,7 +28,7 @@ export default async function Similiar({
             key={index}
             className="w-[230px] h-[439px]"
           >
-            <div className="w-[230px] h-[439px] rounded-b-md ">
+            <div className="w-[230px] h-[439px] rounded-b-md">
               <Image
                 alt=""
                 width={1000}

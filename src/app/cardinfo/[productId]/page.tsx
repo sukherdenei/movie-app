@@ -59,7 +59,7 @@ export default async function CardInfo({
         </div>
       </div>
 
-      <div className="flex  gap-x-52 mb-5">
+      <div className="flex gap-x-52 mb-5">
         <Image
           alt=""
           width={1000}
@@ -109,7 +109,10 @@ export default async function CardInfo({
           .map((like: MovieType, index: number) => {
             return (
               <Link href={`/cardinfo/${like.id}`}>
-                <div className="w-[190px] h-[372px]" key={index}>
+                <div
+                  className="w-[190px] h-[372px] hover:opacity-50 transition-all ease-in"
+                  key={index}
+                >
                   <Image
                     alt=""
                     width={281}

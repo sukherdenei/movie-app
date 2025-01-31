@@ -28,7 +28,7 @@ export default async function Popular() {
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
             <Link
-              className="bg-stone-700 rounded-lg w-[230px] h-[439px]"
+              className="bg-stone-700 rounded-lg w-[230px] h-[439px] hover:opacity-50 transition-all ease-in"
               href={`/cardinfo/${card.id}`}
               key={index}
             >

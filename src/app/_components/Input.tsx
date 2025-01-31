@@ -10,8 +10,7 @@ export default function Input() {
   const [value, setValue] = useState([]);
 
   const addHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const search = e.target.value.toLocaleLowerCase();
-    setSearch(search);
+    setSearch(e.target.value.toLocaleLowerCase());
     if (search == "") {
       setValue([]);
       return;
@@ -23,6 +22,9 @@ export default function Input() {
     // console.log(response);
     setValue(response.results || []);
   };
+  const clickHandler = () => {
+    setSearch("");
+  };
 
   return (
     <div className="relative">
@@ -31,14 +33,18 @@ export default function Input() {
         placeholder="search"
         value={search}
         onChange={addHandler}
-        className="w-[355px] h-[36px] p-[20px] rounded-md "
+        className="w-[355px] h-[36px] p-[20px] rounded-md"
       />
       {search ? (
         <div className="absolute top-[40px]">
           {value.slice(0, 5).map((movie: MovieType, index: number) => {
             return (
               <div key={index} className="flex flex-col w-full">
-                <Link href={`/cardinfo/${movie.id}`}>
+                {/* onClick={setSearch("")} */}
+                <Link
+                  href={`/cardinfo/${movie.id}`}
+                  onClick={() => clickHandler()}
+                >
                   <Card className="w-[545px] gap-5 p-5 rounded-md   flex justify-start ">
                     <img
                       className="w-[36px] h-[100px]"

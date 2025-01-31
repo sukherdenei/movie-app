@@ -12,7 +12,7 @@ import { useSearchParams } from "next/navigation";
 
 export function PaginationDemo() {
   const searchParams = useSearchParams();
-  const value = searchParams.get("value");
+  const page = searchParams.get("page");
   return (
     <Pagination>
       <PaginationContent>
@@ -23,7 +23,7 @@ export function PaginationDemo() {
           <PaginationLink href="value">1</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>
+          <PaginationLink href="page=2" isActive>
             2
           </PaginationLink>
         </PaginationItem>

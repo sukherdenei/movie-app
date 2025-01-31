@@ -19,7 +19,7 @@ export default async function genrePage({
     }
   );
   const genre = await response.json();
-  // console.log(genre);
+  // console.log("hey", genre);
 
   return (
     <div className="w-[1280px] m-auto mt-[52px]">
@@ -31,13 +31,16 @@ export default async function genrePage({
           <ToggleGroupDemo />
         </div>
         <div className="border-l-[0.5px] pl-[20px]">
-          <h1 className="mb-[32px] text-[20px]">{genre.total_results} title</h1>
+          {/* <h1 className="mb-[32px] text-[20px]">{genre.total_results} title</h1> */}
+          <h1 className="mb-[32px] text-[20px] flex">
+            {genre.total_results} Results for "<p>{genrelink}</p>"
+          </h1>
           <div className="w-[800px] flex flex-wrap justify-between  gap-5">
             {genre.results?.map((genres: MovieType, index: number) => {
               return (
                 <div key={index}>
                   <Link href={`/cardinfo/${genres.id}`}>
-                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden">
+                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden hover:opacity-50 transition-all ease-in">
                       <Image
                         width={200}
                         height={200}

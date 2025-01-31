@@ -1,8 +1,12 @@
+// "use client";
 import Image from "next/image";
 import { MovieType, token } from "../../Util";
 import { ToggleGroupDemo } from "@/app/_components/ButtonToggle";
 import Link from "next/link";
 import { PaginationDemo } from "@/app/_components/Pagination";
+// import { useState } from "react";
+
+// const [search, setSearch] = useState("");
 
 export default async function SearchPage({
   params: { searchId },
@@ -19,7 +23,10 @@ export default async function SearchPage({
     }
   );
   const data = await response.json();
-  // console.log(data);
+  // const clickHandler = () => {
+  //   setSearch("");
+  // };
+  console.log(data);
 
   return (
     <div className="w-[1280px] m-auto mt-[52px]">
@@ -31,13 +38,18 @@ export default async function SearchPage({
           <ToggleGroupDemo />
         </div>
         <div className="border-l-[0.5px] pl-[20px]">
-          <h1 className="mb-[32px] text-[20px]">{data.total_results} title</h1>
+          <h1 className="mb-[32px] flex gap">
+            {data.total_results} Results for "<p>{searchId}</p>"
+          </h1>
           <div className="w-[800px] flex flex-wrap justify-between  gap-5">
             {data.results?.map((movie: MovieType, index: number) => {
               return (
                 <div key={index}>
-                  <Link href={`/cardinfo/${movie.id}`}>
-                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden">
+                  <Link
+                    href={`/cardinfo/${movie.id} on`}
+                    // onClick={() => clickHandler}
+                  >
+                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden hover:opacity-50 transition-all ease-in">
                       <Image
                         width={200}
                         height={200}

@@ -33,7 +33,7 @@ export default async function Cards() {
               href={`/cardinfo/${movie.id}`}
               key={index}
             >
-              <div className="w-[230px] h-[439px]">
+              <div className="w-[230px] h-[439px] hover:opacity-50 flex-1 transition-all ease-in">
                 <Image
                   alt=""
                   width={1000}

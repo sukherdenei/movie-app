@@ -29,6 +29,7 @@ export default async function CardInfo({
     }
   );
   const actorsData = await actors.json();
+  // console.log(actorsData);
 
   const moreLikeThis = await fetch(
     `https://api.themoviedb.org/3/movie/${productId}/similar?language=en-US&page=1`,
@@ -42,7 +43,7 @@ export default async function CardInfo({
   const moreLikeData = await moreLikeThis.json();
 
   return (
-    <div className="w-[1080px] p-5 m-auto">
+    <div className="w-[1080px] p-5 m-auto ">
       <div className="flex justify-between mt-5 mb-5">
         <div>
           <p>{data.original_title}</p>
@@ -53,13 +54,13 @@ export default async function CardInfo({
           <h2>Rating</h2>
           <div className="flex  justify-center items-center gap-2">
             <img src="/Star.svg" alt="" className="w-[28px] h-[28px]" />
-            <p>{data.vote_average}/10</p>
+            <p>{data.vote_average.toFixed(1)}/10</p>
             <p>{data.vote_count}</p>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-x-52 mb-5">
+      <div className="flex gap-8 mb-5">
         <Image
           alt=""
           width={1000}
@@ -67,14 +68,16 @@ export default async function CardInfo({
           className="w-[290px] h-[428px] cursor-pointer rounded-lg"
           src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
         />
-        <Image
-          width={400}
-          height={300}
-          src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
-          alt=""
-          className="w-[760px] h-[428px]"
-        />
-        <div className="absolute right-[780px] bottom-[430px]">
+        <div className="relative rounded-sm">
+          <div className="bg-black opacity-45">
+            <Image
+              width={400}
+              height={300}
+              src={"https://image.tmdb.org/t/p/original/" + data?.poster_path}
+              alt=""
+              className="w-[760px] h-[428px] rounded-sm "
+            />
+          </div>
           <DialogCloseButton id={data.id} />
         </div>
       </div>
@@ -88,7 +91,7 @@ export default async function CardInfo({
       <h2>{data.directer}</h2>
       <div>
         <p className="gap-5 flex">
-          {actorsData.crew[0].job} {actorsData.crew[0].name}
+          {actorsData.crew[0]?.job} {actorsData.crew[0]?.name}
         </p>
         <p>{actorsData.crew[1].department}</p>
         <div className="stars flex">
@@ -127,9 +130,9 @@ export default async function CardInfo({
                         src="/Star.svg"
                         alt=""
                       />
-                      {like.vote_average / 10}
+                      {like.vote_average.toFixed(1)} / 10
                     </div>
-                    {like.original_title}
+                    <h1 className="text-[18px]">{like.original_title}</h1>
                   </div>
                 </div>
               </Link>

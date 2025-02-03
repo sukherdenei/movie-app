@@ -45,9 +45,9 @@ export default function Input() {
                   href={`/cardinfo/${movie.id}`}
                   onClick={() => clickHandler()}
                 >
-                  <Card className="w-[545px] gap-5 p-5 rounded-md   flex justify-start ">
+                  <Card className="w-[545px] gap-5 p-5 rounded-md flex justify-start ">
                     <img
-                      className="w-[36px] h-[100px]"
+                      className="w-[67px] h-[100px]"
                       src={
                         "https://image.tmdb.org/t/p/original/" +
                         movie?.poster_path
@@ -76,8 +76,8 @@ export default function Input() {
               </div>
             );
           })}
-          <Link href={`/search/${search}`}>
-            <Card className="h-[34px] flex items-center justify-center">
+          <Link href={`/search/${search}`} onClick={() => clickHandler()}>
+            <Card className="h-[40px] flex items-center justify-center rounded-sm">
               See all results for " search "
             </Card>
           </Link>

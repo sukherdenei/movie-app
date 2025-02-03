@@ -20,7 +20,7 @@ export function PaginationDemo() {
           <PaginationPrevious href="#" />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="value">1</PaginationLink>
+          <PaginationLink>1</PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="page=2" isActive>

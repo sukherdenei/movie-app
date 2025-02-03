@@ -5,7 +5,7 @@ import Carousels from "./_components/Carousel";
 
 export default async function Home() {
   return (
-    <div className="flex flex-col m-auto gap-10">
+    <div className="flex flex-col m-auto gap-5">
       <Carousels />
       <Cards />
       <Popular />

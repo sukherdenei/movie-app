@@ -6,11 +6,14 @@ import Link from "next/link";
 
 export default async function genrePage({
   params: { genrelink },
+  searchParams,
 }: {
   params: { genrelink: string };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const { page } = await searchParams;
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genrelink}&page=1`,
+    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genrelink}&page=${page}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,7 +34,6 @@ export default async function genrePage({
           <ToggleGroupDemo />
         </div>
         <div className="border-l-[0.5px] pl-[20px]">
-          {/* <h1 className="mb-[32px] text-[20px]">{genre.total_results} title</h1> */}
           <h1 className="mb-[32px] text-[20px] flex">
             {genre.total_results} Results for "<p>{genrelink}</p>"
           </h1>

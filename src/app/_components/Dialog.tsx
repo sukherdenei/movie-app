@@ -26,7 +26,7 @@ export async function DialogCloseButton({ id }: { id: string }) {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <button className=" w-[150px] h-[auto] flex gap-[8px] items-center bg-white text-black rounded-[10px] py-[8px] px-[16px] text-[14px] ">
+          <button className=" absolute bottom-5 left-5 w-[150px] h-[auto] flex gap-[8px] items-center bg-white text-black rounded-[10px] py-[8px] px-[16px] text-[14px] ">
             <Play className="w-[16px] h-[16px]" />
             Watch Trailer
           </button>

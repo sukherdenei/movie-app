@@ -4,9 +4,6 @@ import { MovieType, token } from "../../Util";
 import { ToggleGroupDemo } from "@/app/_components/ButtonToggle";
 import Link from "next/link";
 import { PaginationDemo } from "@/app/_components/Pagination";
-// import { useState } from "react";
-
-// const [search, setSearch] = useState("");
 
 export default async function SearchPage({
   params: { searchId },

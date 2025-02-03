@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/popover";
 import { genreType, token } from "../Util";
 import Link from "next/link";
-import { Card } from "@/components/ui/card";
 
 export async function PopoverDemo() {
   const response = await fetch(

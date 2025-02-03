@@ -22,7 +22,11 @@ export default async function UpcomingMore({
     <div className="flex flex-wrap w-[1280px] m-auto mt-10 gap-5">
       {upcomingData.results.map((more: MovieType, index: number) => {
         return (
-          <Link href={`/cardinfo/${more.id}`} className="hover:opacity-50">
+          <Link
+            key={index}
+            href={`/cardinfo/${more.id}`}
+            className="hover:opacity-50"
+          >
             <Image
               alt=""
               width={281}
@@ -35,7 +39,6 @@ export default async function UpcomingMore({
               <p>{more.vote_average}/10</p>
             </div>
             <p>{more.original_title}</p>
-            {/* <p>{more.release_date}</p> */}
           </Link>
         );
       })}

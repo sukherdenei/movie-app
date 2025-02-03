@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { MovieType, token } from "../Util";
 import Image from "next/image";
-import { Card } from "@/components/ui/card";
 
 export default async function Popular() {
   const response = await fetch(

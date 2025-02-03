@@ -13,7 +13,7 @@ export default async function genrePage({
 }) {
   const { page } = await searchParams;
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genrelink}&page=${page}`,
+    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genrelink}&page=1${page}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -22,7 +22,7 @@ export default async function genrePage({
     }
   );
   const genre = await response.json();
-  // console.log("hey", genre);
+  // console.log("hi", genre);
 
   return (
     <div className="w-[1280px] m-auto mt-[52px]">

@@ -1,4 +1,3 @@
-import { Bold } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { MovieType, token } from "../Util";
 import Link from "next/link";

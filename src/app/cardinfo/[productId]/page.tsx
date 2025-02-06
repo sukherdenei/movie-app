@@ -4,10 +4,12 @@ import Link from "next/link";
 import { DialogCloseButton } from "@/app/_components/Dialog";
 
 export default async function CardInfo({
-  params: { productId },
+  params,
 }: {
   params: { productId: string };
 }) {
+  const productId = await params.productId;
+
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${productId}?language=en-US`,
     {
@@ -41,6 +43,14 @@ export default async function CardInfo({
     }
   );
   const moreLikeData = await moreLikeThis.json();
+  console.log("Crew data", actorsData);
+
+  const filter = actorsData.crew
+    .filter((crew: MovieType) => crew.job.toLowerCase().includes("direct"))
+    .slice(1, 2)
+    .map((director: MovieType, index: number) => (
+      <p key={index}>{director.name}</p>
+    ));
 
   return (
     <div className="w-[1080px] p-5 m-auto ">
@@ -54,7 +64,7 @@ export default async function CardInfo({
           <h2>Rating</h2>
           <div className="flex  justify-center items-center gap-2">
             <img src="/Star.svg" alt="" className="w-[28px] h-[28px]" />
-            <p>{data.vote_average.toFixed(1)}/10</p>
+            <p>{data.vote_average?.toFixed(1)}/10</p>
             <p>{data.vote_count}</p>
           </div>
         </div>
@@ -88,16 +98,18 @@ export default async function CardInfo({
         })}
       </div>
       <p className="w-[1080px] h-[90px]">{data.overview}</p>
-      <h2>{data.directer}</h2>
+      {/* <h2>"{filter}"</h2> */}
       <div>
-        <p className="gap-5 flex">
-          {actorsData.crew[0]?.job} {actorsData.crew[0]?.name}
-        </p>
-        <p>{actorsData.crew[1].department}</p>
+        <h5 className="gap-5 flex">
+          {actorsData?.crew[0]?.job} {filter}
+        </h5>
+        <p>{actorsData?.crew[1]?.department}</p>
         <div className="stars flex">
-          {actorsData.cast.slice(0, 5).map((star: genreType, index: number) => {
-            return <p key={index}>{star.name}</p>;
-          })}
+          {actorsData?.cast
+            ?.slice(0, 5)
+            .map((star: genreType, index: number) => {
+              return <p key={index}>{star.name}</p>;
+            })}
         </div>
       </div>
 
@@ -107,11 +119,11 @@ export default async function CardInfo({
       </div>
 
       <div className="moreLikeThisDiv flex gap-5 mt-5 justify-between">
-        {moreLikeData.results
-          .slice(0, 5)
-          .map((like: MovieType, index: number) => {
+        {moreLikeData?.results
+          ?.slice(0, 5)
+          ?.map((like: MovieType, index: number) => {
             return (
-              <Link href={`/cardinfo/${like.id}`}>
+              <Link key={index} href={`/cardinfo/${like.id}`}>
                 <div
                   className="w-[190px] h-[372px] hover:opacity-50 transition-all ease-in"
                   key={index}

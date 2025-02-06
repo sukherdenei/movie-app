@@ -9,11 +9,7 @@ import {
 } from "@/components/ui/pagination";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export function PaginationDemo({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
+export function PaginationDemo() {
   const searchParamsObj = useSearchParams();
   const page = searchParamsObj.get("page") || "1";
   const router = useRouter();

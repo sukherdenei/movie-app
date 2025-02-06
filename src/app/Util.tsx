@@ -19,6 +19,7 @@ export type MovieType = {
   total_results: number;
   total_pages: number;
   titles_count: number;
+  job: string;
 };
 export type genreType = {
   id: number;

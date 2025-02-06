@@ -36,7 +36,7 @@ export async function DialogCloseButton({ id }: { id: string }) {
           <iframe
             width="560"
             height="315"
-            src={`https://www.youtube.com/embed/${trailer.results[0]?.key}`}
+            // src={`https://www.youtube.com/embed/${trailer.results[0]?.key}`}
             title="YouTube video player"
           ></iframe>
         </DialogContent>

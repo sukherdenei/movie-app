@@ -37,11 +37,11 @@ export default async function Similiar({
               />
               <div className="flex gap-1 mb-[5px]">
                 <img src="/Star.svg" alt="" className="w-[16px] h-[16px]" />
-                <p className="text-[14px] font-semibold">
+                <div className="text-[14px] font-semibold">
                   {similiar.vote_average.toFixed(1)}
                   <span className="text-[12px] font-medium">/10</span>
                   <p className="text-[18px]">{similiar.original_title}</p>
-                </p>
+                </div>
               </div>
             </div>
           </Link>

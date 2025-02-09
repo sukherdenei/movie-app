@@ -125,7 +125,7 @@ export default async function CardInfo({
             return (
               <Link key={index} href={`/cardinfo/${like.id}`}>
                 <div
-                  className="w-[190px] h-[372px] hover:opacity-50 transition-all ease-in"
+                  className="w-[190px] h-[372px] overflow-hidden"
                   key={index}
                 >
                   <Image
@@ -133,9 +133,9 @@ export default async function CardInfo({
                     width={281}
                     height={300}
                     src={`https://image.tmdb.org/t/p/original/${like.poster_path}`}
-                    className="rounded-t-lg w-[190px]"
+                    className="rounded-t-lg w-[190px] h-[281px] hover:opacity-50 transition-all ease-in"
                   />
-                  <div className="cardsInfo bg-zinc-900 rounded-lg p-3">
+                  <div className="cardsInfo bg-zinc-900 rounded-lg p-3 h-[87px]">
                     <div className="svg vote flex gap-2">
                       <img
                         className="w-[16px] h-[16px]"
@@ -144,7 +144,7 @@ export default async function CardInfo({
                       />
                       {like.vote_average.toFixed(1)} / 10
                     </div>
-                    <h1 className="text-[18px]">{like.original_title}</h1>
+                    <p className="text-[18px]">{like.original_title}</p>
                   </div>
                 </div>
               </Link>

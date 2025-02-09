@@ -29,7 +29,7 @@ export default async function TopRated() {
         {data.results.slice(0, 10).map((card: MovieType, index: number) => {
           return (
             <Link
-              className="bg-stone-700 rounded-lg w-[230px] h-[439px] hover:opacity-50 transition-all ease-in"
+              className="bg-stone-700 rounded-lg w-[230px] h-[439px] "
               href={`/cardinfo/${card.id}`}
               key={index}
             >
@@ -37,7 +37,7 @@ export default async function TopRated() {
                 alt=""
                 width={1000}
                 height={1000}
-                className="w-[230px] h-[340px] cursor-pointer rounded-t-lg"
+                className="w-[230px] h-[340px] cursor-pointer rounded-t-lg hover:opacity-50 transition-all ease-in"
                 src={"https://image.tmdb.org/t/p/original/" + card.poster_path}
               />
               <div className="p-[8px]">

@@ -38,7 +38,7 @@ export default async function SearchPage({
           <h1 className="mb-[32px] flex gap">
             {data.total_results} Results for "<p>{searchId}</p>"
           </h1>
-          <div className="w-[800px] flex flex-wrap justify-between  gap-5">
+          <div className="w-[800px] flex flex-wrap justify-between gap-5">
             {data.results?.map((movie: MovieType, index: number) => {
               return (
                 <div key={index}>
@@ -46,13 +46,13 @@ export default async function SearchPage({
                     href={`/cardinfo/${movie.id} on`}
                     // onClick={() => clickHandler}
                   >
-                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden hover:opacity-50 transition-all ease-in">
+                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden ">
                       <Image
                         width={200}
                         height={200}
                         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                         alt=""
-                        className="w-[165px] h-[244px] rounded-t-md"
+                        className="w-[165px] h-[244px] rounded-t-md hover:opacity-50 transition-all ease-in"
                       />
                       <div className="p-[10px]">
                         <div className="flex gap-[10px] text-[14px] items-center ">

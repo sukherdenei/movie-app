@@ -42,20 +42,20 @@ export default async function genrePage({
               return (
                 <div key={index}>
                   <Link href={`/cardinfo/${genres.id}`}>
-                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden hover:opacity-50 transition-all ease-in">
+                    <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden">
                       <Image
                         width={200}
                         height={200}
                         src={`https://image.tmdb.org/t/p/original/${genres.poster_path}`}
                         alt=""
-                        className="w-[165px] h-[244px] rounded-t-md"
+                        className="w-[165px] h-[244px] rounded-t-md hover:opacity-50 transition-all ease-in"
                       />
                       <div className="p-[10px]">
                         <div className="flex gap-[10px] text-[14px] items-center ">
                           <img src="/Star.svg" alt="" />
                           <p> {genres.vote_average}/10</p>
                         </div>
-                        <p className="text-[17px] ">{genres.title}</p>
+                        <p className="text-[17px]">{genres.title}</p>
                       </div>
                     </div>
                   </Link>

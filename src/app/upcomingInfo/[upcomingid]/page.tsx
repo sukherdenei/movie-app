@@ -17,6 +17,7 @@ export default async function UpcomingMore({
     }
   );
   const upcomingData = await upcomingMore.json();
+  console.log(upcomingData);
 
   return (
     <div className="flex flex-wrap w-[1280px] m-auto mt-10 gap-5 overflow-hidden">

@@ -3,7 +3,6 @@ import { MovieType, token } from "../Util";
 import Image from "next/image";
 
 export default async function TopRated() {
-  // const getMovie = async () => {
   const response = await fetch(
     "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
     {

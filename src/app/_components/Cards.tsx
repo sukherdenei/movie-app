@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { MovieType, token } from "../Util";
 import Image from "next/image";
-import UpcomingMore from "../upcomingInfo/[upcomingid]/page";
 
 export default async function Cards() {
   const response = await fetch(
@@ -45,7 +44,9 @@ export default async function Cards() {
                 />
                 <div className="p-[8px]">
                   <div className="flex gap-1 mb-[5px]">
-                    <img
+                    <Image
+                      width={16}
+                      height={16}
                       src="./Star.svg"
                       alt=""
                       className="w-[16px] h-[16px]"

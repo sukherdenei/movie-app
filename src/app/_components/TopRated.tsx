@@ -13,7 +13,6 @@ export default async function TopRated() {
     }
   );
   const data = await response.json();
-  // console.log(data);
 
   return (
     <div className="flex mx-[auto] flex-col w-[1280px] mt-5 justify-center">
@@ -41,7 +40,13 @@ export default async function TopRated() {
               />
               <div className="p-[8px]">
                 <div className="flex gap-1 mb-[5px]">
-                  <img src="./Star.svg" alt="" className="w-[16px] h-[16px]" />
+                  <Image
+                    src="./Star.svg"
+                    alt=""
+                    className="w-[16px] h-[16px]"
+                    width={16}
+                    height={16}
+                  />
                   <p className="text-[14px] font-semibold">
                     {card.vote_average.toFixed(1)}
                     <span className="text-[12px] font-medium">/10</span>

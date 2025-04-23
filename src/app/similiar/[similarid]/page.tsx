@@ -2,11 +2,14 @@ import { MovieType, token } from "@/app/Util";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Similiar({
-  params: { similarid },
-}: {
-  params: { similarid: string };
-}) {
+interface Props {
+  params: Promise<{ similarid: string }>;
+}
+
+export default async function Similiar(props: Props) {
+  const params = await props.params;
+  const similarid = params.similarid;
+
   const moreLikeThis = await fetch(
     `https://api.themoviedb.org/3/movie/${similarid}/similar?language=en-US&page=1`,
     {
@@ -36,7 +39,13 @@ export default async function Similiar({
                 className="object-cover w-[230px] h-[340px] cursor-pointer rounded-t-lg hover:opacity-50 transition-all ease-in"
               />
               <div className="flex gap-1 mb-[5px] h-[95px]">
-                <img src="/Star.svg" alt="" className="w-[16px] h-[16px]" />
+                <Image
+                  src="/Star.svg"
+                  alt=""
+                  className="w-[16px] h-[16px]"
+                  width={16}
+                  height={16}
+                />
                 <div className="text-[14px] font-semibold">
                   {similiar.vote_average.toFixed(1)}
                   <span className="text-[12px] font-medium">/10</span>

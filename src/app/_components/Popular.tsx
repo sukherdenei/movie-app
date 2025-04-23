@@ -40,7 +40,13 @@ export default async function Popular() {
               />
               <div className="p-[8px]">
                 <div className="flex gap-1 mb-[5px]">
-                  <img src="./Star.svg" alt="" className="w-[16px] h-[16px]" />
+                  <Image
+                    src="./Star.svg"
+                    alt=""
+                    className="w-[16px] h-[16px]"
+                    width={16}
+                    height={16}
+                  />
                   <p className="text-[14px] font-semibold">
                     {card.vote_average.toFixed(1)}
                     <span className="text-[12px] font-medium">/10</span>

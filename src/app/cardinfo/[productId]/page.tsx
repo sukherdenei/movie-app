@@ -3,12 +3,13 @@ import { genreType, MovieType, token } from "../../Util";
 import Link from "next/link";
 import { DialogCloseButton } from "@/app/_components/Dialog";
 
-export default async function CardInfo({
-  params,
-}: {
-  params: { productId: string };
-}) {
-  const productId = await params.productId;
+interface Props {
+  params: Promise<{ productId: string }>;
+}
+
+export default async function CardInfo(props: Props) {
+  const params = await props.params;
+  const productId = params.productId;
 
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${productId}?language=en-US`,
@@ -31,7 +32,6 @@ export default async function CardInfo({
     }
   );
   const actorsData = await actors.json();
-  // console.log(actorsData);
 
   const moreLikeThis = await fetch(
     `https://api.themoviedb.org/3/movie/${productId}/similar?language=en-US&page=1`,
@@ -63,7 +63,13 @@ export default async function CardInfo({
         <div className="header-right">
           <h2>Rating</h2>
           <div className="flex  justify-center items-center gap-2">
-            <img src="/Star.svg" alt="" className="w-[28px] h-[28px]" />
+            <Image
+              src="/Star.svg"
+              alt=""
+              className="w-[28px] h-[28px]"
+              width={16}
+              height={16}
+            />
             <p>{data.vote_average?.toFixed(1)}/10</p>
             <p>{data.vote_count}</p>
           </div>
@@ -88,7 +94,7 @@ export default async function CardInfo({
               className="w-[760px] h-[428px] rounded-sm "
             />
           </div>
-          <DialogCloseButton id={data.id} />
+          <DialogCloseButton />
         </div>
       </div>
 
@@ -98,7 +104,6 @@ export default async function CardInfo({
         })}
       </div>
       <p className="w-[1080px] h-[90px]">{data.overview}</p>
-      {/* <h2>"{filter}"</h2> */}
       <div>
         <h5 className="gap-5 flex">
           {actorsData?.crew[0]?.job} {filter}
@@ -137,10 +142,12 @@ export default async function CardInfo({
                   />
                   <div className="cardsInfo bg-zinc-900 rounded-lg p-3 h-[87px]">
                     <div className="svg vote flex gap-2">
-                      <img
+                      <Image
                         className="w-[16px] h-[16px]"
                         src="/Star.svg"
                         alt=""
+                        width={16}
+                        height={16}
                       />
                       {like.vote_average.toFixed(1)} / 10
                     </div>

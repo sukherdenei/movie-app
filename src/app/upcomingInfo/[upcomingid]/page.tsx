@@ -2,11 +2,14 @@ import { MovieType, token } from "@/app/Util";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function UpcomingMore({
-  params: { upcomingid },
-}: {
-  params: { upcomingid: string };
-}) {
+interface Props {
+  params: Promise<{ upcomingid: string }>;
+}
+
+export default async function UpcomingMore(props: Props) {
+  const params = await props.params;
+  const upcomingid = params.upcomingid;
+
   const upcomingMore = await fetch(
     `https://api.themoviedb.org/3/movie/${upcomingid}?language=en-US&page=1`,
     {
@@ -37,7 +40,7 @@ export default async function UpcomingMore({
             />
             <div className="h-[87px] rounded-b-lg">
               <div className="flex gap-2">
-                <img src="/Star.svg" alt="" />
+                <Image src="/Star.svg" alt="" width={16} height={16} />
                 <p>{more.vote_average}/10</p>
               </div>
               <p className="text-[17px]">{more.original_title}</p>

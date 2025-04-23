@@ -1,27 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { token } from "../Util";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Play } from "lucide-react";
 
-export async function DialogCloseButton({ id }: { id: string }) {
-  const trailerData = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-type": "application/json",
-      },
-    }
-  );
-  const trailer = await trailerData.json();
-
+export async function DialogCloseButton() {
   return (
     <div>
       <Dialog>

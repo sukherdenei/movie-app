@@ -4,6 +4,7 @@ import fetchInputs from "@/components/util/serach";
 import { MovieType } from "../Util";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function Input() {
   const [search, setSearch] = useState("");
@@ -46,7 +47,10 @@ export default function Input() {
                   onClick={() => clickHandler()}
                 >
                   <Card className="w-[545px] gap-5 p-5 rounded-md flex justify-start ">
-                    <img
+                    <Image
+                      alt=""
+                      width={67}
+                      height={100}
                       className="w-[67px] h-[100px]"
                       src={
                         "https://image.tmdb.org/t/p/original/" +
@@ -59,10 +63,12 @@ export default function Input() {
                     >
                       {movie?.original_title}
                       <div className="flex items-center">
-                        <img
+                        <Image
                           className="w-[16px] h-[16px]"
                           src="/Star.svg"
                           alt=""
+                          width={16}
+                          height={16}
                         />
                         {movie.vote_average}/10
                       </div>
@@ -78,7 +84,7 @@ export default function Input() {
           })}
           <Link href={`/search/${search}`} onClick={() => clickHandler()}>
             <Card className="h-[40px] flex items-center justify-center rounded-sm">
-              See all results for " search "
+              See all results for&quot; search&quot;
             </Card>
           </Link>
         </div>

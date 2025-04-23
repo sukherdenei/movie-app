@@ -4,14 +4,17 @@ import { MovieType, token } from "@/app/Util";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function genrePage({
-  params: { genrelink },
-  searchParams,
-}: {
-  params: { genrelink: string };
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const { page } = await searchParams;
+interface Props {
+  params: Promise<{ genreLink: string }>;
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function genrePage(props: Props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+  const genrelink = params.genreLink;
+  const page = Number(searchParams.page) || 1;
+
   const response = await fetch(
     `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genrelink}&page=1${page}`,
     {
@@ -35,7 +38,7 @@ export default async function genrePage({
         </div>
         <div className="border-l-[0.5px] pl-[20px]">
           <h1 className="mb-[32px] text-[20px] flex">
-            {genre.total_results} Results for "<p>{genrelink}</p>"
+            {genre.total_results} Results for &quot;<p>{genrelink}</p>
           </h1>
           <div className="w-[800px] flex flex-wrap justify-between  gap-5">
             {genre.results?.map((genres: MovieType, index: number) => {
@@ -52,7 +55,12 @@ export default async function genrePage({
                       />
                       <div className="p-[10px]">
                         <div className="flex gap-[10px] text-[14px] items-center ">
-                          <img src="/Star.svg" alt="" />
+                          <Image
+                            src="/Star.svg"
+                            alt=""
+                            width={16}
+                            height={16}
+                          />
                           <p> {genres.vote_average}/10</p>
                         </div>
                         <p className="text-[17px]">{genres.title}</p>

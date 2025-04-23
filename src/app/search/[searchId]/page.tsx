@@ -1,15 +1,17 @@
-// "use client";
 import Image from "next/image";
 import { MovieType, token } from "../../Util";
 import { ToggleGroupDemo } from "@/app/_components/ButtonToggle";
 import Link from "next/link";
 import { PaginationDemo } from "@/app/_components/Pagination";
 
-export default async function SearchPage({
-  params: { searchId },
-}: {
-  params: { searchId: string };
-}) {
+interface Props {
+  params: Promise<{ searchId: string }>;
+}
+
+export default async function SearchPage(props: Props) {
+  const params = await props.params;
+  const searchId = params.searchId;
+
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?query=${searchId}&language=en-US`,
     {
@@ -20,9 +22,6 @@ export default async function SearchPage({
     }
   );
   const data = await response.json();
-  // const clickHandler = () => {
-  //   setSearch("");
-  // };
   console.log(data);
 
   return (
@@ -36,16 +35,13 @@ export default async function SearchPage({
         </div>
         <div className="border-l-[0.5px] pl-[20px]">
           <h1 className="mb-[32px] flex gap">
-            {data.total_results} Results for "<p>{searchId}</p>"
+            {data.total_results} Results for&quot;<p>{searchId}</p>
           </h1>
           <div className="w-[800px] flex flex-wrap justify-between gap-5">
             {data.results?.map((movie: MovieType, index: number) => {
               return (
                 <div key={index}>
-                  <Link
-                    href={`/cardinfo/${movie.id} on`}
-                    // onClick={() => clickHandler}
-                  >
+                  <Link href={`/cardinfo/${movie.id} on`}>
                     <div className="w-[165px] h-[331px] border-amber-400 bg-stone-800 rounded-md overflow-hidden ">
                       <Image
                         width={200}
@@ -56,7 +52,12 @@ export default async function SearchPage({
                       />
                       <div className="p-[10px]">
                         <div className="flex gap-[10px] text-[14px] items-center ">
-                          <img src="/Star.svg" alt="" />
+                          <Image
+                            src="/Star.svg"
+                            alt=""
+                            width={16}
+                            height={16}
+                          />
                           <p> {movie.vote_average}/10</p>
                         </div>
                         <p className="text-[17px] ">{movie.title}</p>

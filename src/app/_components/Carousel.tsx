@@ -1,7 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { genreType, MovieType, token } from "../Util";
+import { MovieType, token } from "../Util";
 import Link from "next/link";
 import { DialogCloseButton } from "./Dialog";
 
@@ -52,7 +52,9 @@ export default async function Carousels() {
                       {cover.original_title}
                     </h1>
                     <div className="flex gap-[4px] items-center mb-[26px]">
-                      <img
+                      <Image
+                        width={28}
+                        height={28}
                         className="w-[28px] h-[28px]"
                         src="Star.svg"
                         alt=""
@@ -68,7 +70,7 @@ export default async function Carousels() {
                       {cover.overview}
                     </p>
                     <div className="">
-                      <DialogCloseButton id={cover.id} />
+                      <DialogCloseButton />
                     </div>
                   </div>
                 </div>

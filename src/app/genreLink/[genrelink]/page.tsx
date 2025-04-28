@@ -5,14 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  params: Promise<{ genreLink: string }>;
+  params: Promise<{ genrelink: string }>;
   searchParams: Promise<{ page?: string }>;
 }
 
 export default async function genrePage(props: Props) {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const genrelink = params.genreLink;
+  const genrelink = params.genrelink;
   const page = Number(searchParams.page) || 1;
 
   const response = await fetch(
@@ -25,7 +25,6 @@ export default async function genrePage(props: Props) {
     }
   );
   const genre = await response.json();
-  // console.log("hi", genre);
 
   return (
     <div className="w-[1280px] m-auto mt-[52px]">

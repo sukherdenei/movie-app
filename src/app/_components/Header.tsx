@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <Card className="w-full sticky top-0 z-10">
       <div className="w-[1260px] h-[59px] items-center flex  sticky top-0 justify-between m-auto cursor-pointer rounded-sm z-50">
-        <Link href={"http://localhost:3000/"}>
+        <Link href={"/"}>
           <Image
             width={100}
             height={100}
